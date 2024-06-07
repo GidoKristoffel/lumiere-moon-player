@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-control-panel',
+  selector: 'lmp-control-panel',
   standalone: true,
   imports: [],
   templateUrl: './control-panel.component.html',
