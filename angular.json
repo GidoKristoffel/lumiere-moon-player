@@ -21,7 +21,10 @@
             "polyfills": ["zone.js"],
             "tsConfig": "tsconfig.app.json",
             "assets": ["src/assets"],
-            "styles": ["src/app/shared/styles/global.scss"]
+            "styles": [
+              "src/app/shared/styles/global.scss",
+              "src/app/shared/styles/border.scss"
+            ]
           },
           "configurations": {
             "production": {
