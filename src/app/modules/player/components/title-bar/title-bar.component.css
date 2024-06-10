@@ -52,3 +52,9 @@
 .icon > img {
     display: block;
 }
+
+.btn-container {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+}
