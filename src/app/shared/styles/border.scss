@@ -1,18 +1,18 @@
 .border-outside {
   border: 1px solid #1d1e1a;
-}
 
-.border-outside::after {
-  content: '';
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  bottom: -4px;
-  left: -4px;
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-}
+  &::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    bottom: -4px;
+    left: -4px;
+    border: 2px solid transparent;
+    transition: border-color 0.3s;
+  }
 
-.border-outside:hover::after {
-  border-color: #1d1e1a;
+  &:hover::after {
+    border-color: #1d1e1a;
+  }
 }
