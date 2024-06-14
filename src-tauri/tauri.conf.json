@@ -17,6 +17,8 @@
         "open": true
       },
       "window": {
+        "minimize": true,
+        "setFullscreen": true,
         "close": true
       }
     },
