@@ -15,4 +15,8 @@ export class VideoService {
   public set(video: File): void {
     this.video = video;
   }
+
+  public isAvailable(): boolean {
+    return Boolean(this.video);
+  }
 }
