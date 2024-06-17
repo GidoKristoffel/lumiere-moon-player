@@ -2,16 +2,13 @@
   border: 1px solid #1d1e1a;
 
   &::after {
+    border: 2px solid #1d1e1a;
     content: '';
     position: absolute;
     top: -4px;
     right: -4px;
     bottom: -4px;
     left: -4px;
-  }
-
-  &:hover::after {
-    border-color: #1d1e1a;
   }
 }
 

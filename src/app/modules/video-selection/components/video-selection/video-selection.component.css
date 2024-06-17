@@ -1,0 +1,25 @@
+.video-selection {
+    width: 100vw;
+    height: 100vh;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.video-selection-drag-on-drop {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #1d1e1a;
+    width: 100%;
+    height: 100%;
+    padding: 12px;
+    box-sizing: border-box;
+}
+
+.video-selection-card {
+    position: relative;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
