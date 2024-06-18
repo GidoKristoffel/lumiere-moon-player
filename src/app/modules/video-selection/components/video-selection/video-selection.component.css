@@ -1,4 +1,5 @@
 input, button {
+    display: inline-block;
     position: relative;
     background: none;
 }
