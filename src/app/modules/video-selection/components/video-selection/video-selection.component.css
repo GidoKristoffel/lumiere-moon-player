@@ -1,3 +1,9 @@
+input, button {
+    display: inline-block;
+    position: relative;
+    background: none;
+}
+
 .video-selection {
     width: 100vw;
     height: 100vh;
