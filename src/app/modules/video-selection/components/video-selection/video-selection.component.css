@@ -1,4 +1,4 @@
-input, button {
+input {
     display: inline-block;
     position: relative;
     background: none;
@@ -28,4 +28,9 @@ input, button {
     display: flex;
     flex-direction: column;
     text-align: center;
+}
+
+.video-selection-by-url {
+    display: flex;
+    gap: 8px;
 }
