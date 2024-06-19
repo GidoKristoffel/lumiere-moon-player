@@ -1,7 +1,13 @@
+p {
+    margin: 0;
+}
+
 input {
     display: inline-block;
     position: relative;
     background: none;
+    outline: none;
+    padding: 8px;
 }
 
 .video-selection {
@@ -28,6 +34,7 @@ input {
     display: flex;
     flex-direction: column;
     text-align: center;
+    gap: 8px;
 }
 
 .video-selection-by-url {
