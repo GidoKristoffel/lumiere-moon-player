@@ -15,7 +15,10 @@ export class VideoSelectionComponent {
   constructor(private videoSelectionService: VideoSelectionService) {}
 
   public openFile(): void {
-    console.log('open file');
-    this.videoSelectionService.loadFromFileSystem();
+    this.videoSelectionService.loadFromFileSystem().then();
+  }
+
+  public loadByURL(url: string): void {
+    this.videoSelectionService.loadByUrl(url);
   }
 }

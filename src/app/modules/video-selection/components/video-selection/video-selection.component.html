@@ -7,8 +7,8 @@
             <lmp-default-btn (onClick)="openFile()">Open file</lmp-default-btn>
             <p>or</p>
             <div class="video-selection-by-url">
-                <input type="text" placeholder="video url" class="border-outside">
-                <lmp-default-btn>Load by url</lmp-default-btn>
+                <input type="text" placeholder="video url" class="border-outside" #videoURL>
+                <lmp-default-btn (onClick)="loadByURL(videoURL.value)">Load by url</lmp-default-btn>
             </div>
             <p>or <br> drag and drop the file into the window</p>
         </div>
