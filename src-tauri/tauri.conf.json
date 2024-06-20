@@ -20,6 +20,12 @@
         "minimize": true,
         "setFullscreen": true,
         "close": true
+      },
+      "fs": {
+        "all": true
+      },
+      "dialog": {
+        "all": true
       }
     },
     "windows": [
