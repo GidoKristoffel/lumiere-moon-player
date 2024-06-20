@@ -4,15 +4,15 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class VideoService {
-  private video: File | undefined;
+  private video: string | ArrayBuffer | null = null;
 
   constructor() { }
 
-  public get(): File | undefined {
+  public get(): string | ArrayBuffer | null {
     return this.video;
   }
 
-  public set(video: File): void {
+  public set(video: string | ArrayBuffer | null): void {
     this.video = video;
   }
 
