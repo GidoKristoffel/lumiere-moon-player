@@ -62,4 +62,22 @@ export class VideoSelectionService {
       });
     });
   }
+
+  public async loadByDragAndDrop(event: DragEvent): Promise<void> {
+    console.log('loadByDragAndDrop');
+    event.preventDefault();
+    console.log('loadByDragAndDrop 2');
+
+    if (event.dataTransfer && event.dataTransfer.files.length > 0) {
+      const file: File = event.dataTransfer.files[0];
+      const arrayBuffer: ArrayBuffer = await file.arrayBuffer();
+      const blob: Blob = new Blob([arrayBuffer], { type: file.type });
+
+      if (file.type.startsWith('video/')) {
+        this.videoService.set(URL.createObjectURL(blob));
+      } else {
+        this.videoService.set(null);
+      }
+    }
+  }
 }
