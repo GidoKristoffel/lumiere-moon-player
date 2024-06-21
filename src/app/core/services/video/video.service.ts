@@ -14,6 +14,7 @@ export class VideoService {
 
   public set(video: string | ArrayBuffer | null): void {
     this.video = video;
+    console.log(this.video);
   }
 
   public isAvailable(): boolean {

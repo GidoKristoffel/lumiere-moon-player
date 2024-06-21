@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { DefaultBtnComponent } from "../../../../shared/components/buttons/default-btn/default-btn.component";
 import { VideoSelectionService } from "../../services/video-selection/video-selection.service";
 
@@ -12,6 +12,12 @@ import { VideoSelectionService } from "../../services/video-selection/video-sele
   styleUrl: './video-selection.component.css'
 })
 export class VideoSelectionComponent {
+  @HostListener('window:dragover', ['$event'])
+  @HostListener('window:drop', ['$event'])
+  onDragOver(event: DragEvent): void {
+    event.preventDefault();
+  }
+
   constructor(private videoSelectionService: VideoSelectionService) {}
 
   public openFile(): void {
@@ -20,5 +26,9 @@ export class VideoSelectionComponent {
 
   public loadByURL(url: string): void {
     this.videoSelectionService.loadByUrl(url);
+  }
+
+  public loadByDragAndDrop(event: DragEvent): void {
+    this.videoSelectionService.loadByDragAndDrop(event).then();
   }
 }

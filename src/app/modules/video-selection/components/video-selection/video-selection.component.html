@@ -1,4 +1,4 @@
-<div class="video-selection">
+<div class="video-selection" (drop)="loadByDragAndDrop($event)" (dragover)="onDragOver($event)">
     <div class="video-selection-drag-on-drop">
         <div class="video-selection-card border-outside">
             <div class="video-selection-title">
