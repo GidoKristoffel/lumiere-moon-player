@@ -14,12 +14,6 @@ import { DragAndDropFileDirective } from "../../directives/drag-and-drop-file/dr
   styleUrl: './video-selection.component.css'
 })
 export class VideoSelectionComponent {
-  @HostListener('window:dragover', ['$event'])
-  @HostListener('window:drop', ['$event'])
-  onDragOver(event: DragEvent): void {
-    event.preventDefault();
-  }
-
   constructor(private videoSelectionService: VideoSelectionService) {}
 
   public openFile(): void {
