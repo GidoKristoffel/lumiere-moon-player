@@ -33,7 +33,8 @@
         "title": "Lumiere moon player",
         "width": 800,
         "height": 600,
-        "decorations": false
+        "decorations": false,
+        "fileDropEnabled": false
       }
     ],
     "security": {
