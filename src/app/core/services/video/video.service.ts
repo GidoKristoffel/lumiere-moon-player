@@ -4,16 +4,21 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class VideoService {
-  private video: string | ArrayBuffer | File | null = null;
+  private video: string | null = null;
 
-  constructor() { }
+  constructor() {
+    this.set(localStorage.getItem('videoUrl'));
+  }
 
-  public get(): string | ArrayBuffer | File | null {
+  public get(): string | null {
     return this.video;
   }
 
-  public set(video: string | ArrayBuffer | File | null): void {
+  public set(video: string | null): void {
     this.video = video;
+    if (video) {
+      localStorage.setItem('videoUrl', video);
+    }
   }
 
   public isAvailable(): boolean {
