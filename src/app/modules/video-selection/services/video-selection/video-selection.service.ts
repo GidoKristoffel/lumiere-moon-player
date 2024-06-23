@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { open } from '@tauri-apps/api/dialog';
 import { readBinaryFile } from '@tauri-apps/api/fs';
 import { VideoService } from "../../../../core/services/video/video.service";
+import { Router } from "@angular/router";
+import { convertFileSrc } from '@tauri-apps/api/tauri';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideoSelectionService {
-  constructor(private videoService: VideoService) {
+  constructor(private videoService: VideoService, private router: Router) {
   }
 
   public async loadFromFileSystem(): Promise<void> {
@@ -20,13 +22,8 @@ export class VideoSelectionService {
         }]
       });
 
-      if (selected) {
-        const videoPath = selected as string;
-        const videoData = await readBinaryFile(videoPath);
-
-        const blob: Blob = new Blob([videoData], { type: 'video/mp4' });
-        this.videoService.set(URL.createObjectURL(blob));
-      }
+      this.videoService.set(convertFileSrc(selected as string));
+      this.router.navigate(['player']).then();
     } catch (error) {
       console.error('Failed to open file dialog:', error);
     }
@@ -37,8 +34,9 @@ export class VideoSelectionService {
       this.checkVideoPlayable(url)
           .then((): void => {
             this.videoService.set(url);
+            this.router.navigate(['player']).then();
           })
-          .catch((error): void => {
+          .catch((): void => {
             this.videoService.set(null);
           });
     }
@@ -64,10 +62,6 @@ export class VideoSelectionService {
   }
 
   public async loadByDragAndDrop(event: DragEvent): Promise<void> {
-    console.log('loadByDragAndDrop');
-    event.preventDefault();
-    console.log('loadByDragAndDrop 2');
-
     if (event.dataTransfer && event.dataTransfer.files.length > 0) {
       const file: File = event.dataTransfer.files[0];
       const arrayBuffer: ArrayBuffer = await file.arrayBuffer();

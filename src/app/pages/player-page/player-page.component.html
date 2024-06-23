@@ -1,5 +1,8 @@
 <div class="main">
     <lmp-title-bar></lmp-title-bar>
-    <video></video>
+    <video *ngIf="videoURL" controls>
+        <source [src]="videoURL" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
     <lmp-control-panel></lmp-control-panel>
 </div>
