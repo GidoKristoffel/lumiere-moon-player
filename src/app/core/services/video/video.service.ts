@@ -16,8 +16,8 @@ export class VideoService {
 
   public set(video: string | null): void {
     this.video = video;
-    if (video) {
-      localStorage.setItem('videoUrl', video);
+    if (this.video) {
+      localStorage.setItem('videoUrl', this.video);
     }
   }
 
