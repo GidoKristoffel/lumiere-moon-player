@@ -39,7 +39,7 @@
         "width": 800,
         "height": 600,
         "decorations": false,
-        "fileDropEnabled": false
+        "fileDropEnabled": true
       }
     ],
     "security": {
