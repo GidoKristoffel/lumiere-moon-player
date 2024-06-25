@@ -2,14 +2,6 @@ p {
     margin: 0;
 }
 
-input {
-    display: inline-block;
-    position: relative;
-    background: none;
-    outline: none;
-    padding: 8px;
-}
-
 .video-selection {
     width: 100vw;
     height: 100vh;
@@ -29,8 +21,8 @@ input {
 }
 
 .video-selection-card {
-    position: relative;
-    padding: 12px;
+    /*position: relative;*/
+    /*padding: 12px;*/
     display: flex;
     flex-direction: column;
     text-align: center;
