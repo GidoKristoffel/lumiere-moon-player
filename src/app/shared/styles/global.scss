@@ -50,3 +50,19 @@ button {
     background-color: $background-btn-active;
   }
 }
+
+input {
+  font-family: $text-font;
+  font-size: $text-size;
+  font-weight: $text-weight;
+  border: 2px solid $border-input;
+  background: $background-input;
+  padding: $padding-input;
+  color: $text-color;
+  outline: none;
+}
+
+.card {
+  border: 2px solid $border-input;
+  padding: $padding-card;
+}
