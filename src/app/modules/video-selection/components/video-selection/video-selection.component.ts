@@ -7,7 +7,7 @@ import { VideoSelectionService } from "../../services/video-selection/video-sele
   standalone: true,
   imports: [DefaultBtnComponent],
   templateUrl: './video-selection.component.html',
-  styleUrl: './video-selection.component.css'
+  styleUrl: './video-selection.component.scss'
 })
 export class VideoSelectionComponent implements OnInit {
 
