@@ -8,13 +8,18 @@
   "projects": {
     "lumiere-moon-player": {
       "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "lmp",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
-          "options": {
+            "options": {
             "outputPath": "dist/lumiere-moon-player",
             "index": "src/index.html",
             "browser": "src/main.ts",
@@ -23,7 +28,8 @@
             "assets": ["src/assets"],
             "styles": [
               "src/app/shared/styles/global.scss",
-              "src/app/shared/styles/border.scss"
+              "src/app/shared/styles/border.scss",
+              "src/app/shared/styles/constants.scss"
             ]
           },
           "configurations": {

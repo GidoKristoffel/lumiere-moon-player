@@ -1,35 +1,35 @@
+@import '../../../../shared/styles/constants.scss';
+
 p {
     margin: 0;
 }
 
-.video-selection {
-    width: 100vw;
-    height: 100vh;
-    padding: 12px;
+:host {
+    width: 100%;
+    height: 100%;
+    padding: $padding-window;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .video-selection-drag-on-drop {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px dashed #1d1e1a;
+    border: 2px dashed $border-drag-on-drop;
     width: 100%;
     height: 100%;
     padding: 12px;
     box-sizing: border-box;
 }
 
-.video-selection-card {
-    /*position: relative;*/
-    /*padding: 12px;*/
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    gap: 8px;
-}
-
 .video-selection-by-url {
     display: flex;
     gap: 8px;
+
+    & > :first-child {
+        flex: 1;
+    }
 }

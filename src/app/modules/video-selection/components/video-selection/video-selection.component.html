@@ -1,16 +1,8 @@
-<div class="video-selection">
-    <div class="video-selection-drag-on-drop">
-        <div class="video-selection-card card">
-            <div class="video-selection-title">
-                Select video file:
-            </div>
-            <lmp-default-btn (onClick)="openFile()">Open file</lmp-default-btn>
-            <p>or</p>
-            <div class="video-selection-by-url">
-                <input type="text" placeholder="video url" #videoURL>
-                <lmp-default-btn (onClick)="loadByURL(videoURL.value)">Load by url</lmp-default-btn>
-            </div>
-            <p>or <br> drag and drop the file into the window</p>
-        </div>
-    </div>
+<lmp-default-btn (onClick)="openFile()">Open file from filesystem</lmp-default-btn>
+<div class="video-selection-by-url">
+    <input type="text" placeholder="video url" #videoURL>
+    <lmp-default-btn (onClick)="loadByURL(videoURL.value)">Open by url</lmp-default-btn>
+</div>
+<div class="video-selection-drag-on-drop">
+    <p>Open file by drag and drop</p>
 </div>
