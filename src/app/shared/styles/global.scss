@@ -3,12 +3,15 @@
 
 body {
   background-color: $background;
-  font-family: Calibri, sans-serif;
+  font-family: $text-font;
+  font-weight: $text-weight;
   margin: 0;
-  border: 2px solid $border-main-window;
+  border: 4px solid $border-main-window;
   width: 100vw;
   height: 100vh;
   box-sizing: border-box;
+  color: $text-color;
+  font-size: $text-size;
 }
 
 video {
@@ -19,4 +22,31 @@ video {
 img {
   display: block;
   user-select: none;
+}
+
+button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  background: none;
+  color: $text-color;
+  font-family: $text-font;
+  font-size: $text-size;
+  font-weight: $text-weight;
+  padding: $padding-btn;
+  border: 2px solid $border-btn;
+
+  &:hover {
+    color: $text-color-hover;
+    border-color: $border-btn-hover;
+    background-color: $background-btn-hover;
+  }
+
+  &:active {
+    color: $text-color-active;
+    border-color: $border-btn-active;
+    background-color: $background-btn-active;
+  }
 }

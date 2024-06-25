@@ -1,18 +1,23 @@
 @import 'color.scss';
 
 $text-color: #e7e8e9;
+$text-color-hover: #e7e8e9;
+$text-color-active: #e3395e;
+$text-size: 13px;
+$text-font: 'Courier New', 'Consolas', monospace;
+$text-weight: bold;
 
 $background: #051519;
 $background-btn: none;
-$background-btn-hover: none;
-$background-btn-active: none;
+$background-btn-hover: #262626;
+$background-btn-active: #262626;
 $background-card: none;
 $background-input: none;
 
 $border-main-window: #383939;
-$border-btn: none;
-$border-btn-hover: none;
-$border-btn-active: none;
+$border-btn: #383939;
+$border-btn-hover: #383939;
+$border-btn-active: #e8586e;
 $border-card: none;
 $border-input: none;
 
@@ -20,6 +25,6 @@ $border-radius-btn: 4px;
 $border-radius-card: 8px;
 $border-radius-input: 4px;
 
-$padding-btn: 4px;
+$padding-btn: 4px 8px;
 $padding-card: 8px;
 $padding-input: 4px;
