@@ -1,12 +1,14 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
-import { NgIf, NgOptimizedImage } from "@angular/common";
+import { NgIf } from "@angular/common";
+import { InlineSVGModule } from "ng-inline-svg-2";
+import { HttpClientModule } from "@angular/common/http";
 
 @Component({
   selector: 'lmp-icon-toggle-btn',
   standalone: true,
   imports: [
-    NgOptimizedImage,
-    NgIf
+    NgIf,
+    InlineSVGModule, HttpClientModule
   ],
   templateUrl: './icon-toggle-btn.component.html',
   styleUrl: './icon-toggle-btn.component.css'

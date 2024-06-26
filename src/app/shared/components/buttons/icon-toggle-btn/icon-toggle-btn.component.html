@@ -1,7 +1,7 @@
 <button *ngIf="currentIcon"
-        class="border-outside border-transition"
         (click)="onClick()"
         [style.width.px]="btnSize"
-        [style.height.px]="btnSize">
-    <img [ngSrc]="currentIcon" [width]="iconSize" [height]="iconSize">
+        [style.height.px]="btnSize"
+        [inlineSVG]="currentIcon"
+        [setSVGAttributes]="{width: iconSize, height: iconSize}">
 </button>

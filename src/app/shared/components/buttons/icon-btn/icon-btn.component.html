@@ -1,3 +1,6 @@
-<button class="border-outside border-transition" (click)="onClick()" [style.width.px]="btnSize" [style.height.px]="btnSize">
-    <img [ngSrc]="icon" [width]="iconSize" [height]="iconSize">
+<button (click)="onClick()"
+        [style.width.px]="btnSize"
+        [style.height.px]="btnSize"
+        [inlineSVG]="icon"
+        [setSVGAttributes]="{width: iconSize, height: iconSize}">
 </button>
