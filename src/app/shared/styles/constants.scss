@@ -8,11 +8,12 @@ $text-font: 'Courier New', 'Consolas', monospace;
 $text-weight: bold;
 
 $background: #051519;
-$background-btn: none;
+$background-btn: #051519;
 $background-btn-hover: #262626;
 $background-btn-active: #262626;
 $background-card: none;
 $background-input: none;
+$background-title-bar: #051519;
 
 $border-main-window: #383939;
 $border-btn: #383939;
@@ -34,3 +35,5 @@ $padding-input: 4px 8px;
 $svg-btn-color: #e7e8e9;
 $svg-btn-color-hover: #e7e8e9;
 $svg-btn-color-active: #e3395e;
+
+$height-title-bar: 40px;

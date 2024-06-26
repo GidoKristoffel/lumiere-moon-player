@@ -1,0 +1,17 @@
+@import "../../../../shared/styles/constants.scss";
+
+.title-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: $background-title-bar;
+    border-bottom: 2px solid #383939;
+    padding: 0 12px;
+    height: $height-title-bar;
+    box-sizing: border-box;
+}
+
+.btn-container {
+    display: flex;
+    gap: 8px;
+}

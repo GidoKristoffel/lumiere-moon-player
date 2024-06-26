@@ -19,7 +19,8 @@
       "window": {
         "minimize": true,
         "setFullscreen": true,
-        "close": true
+        "close": true,
+        "startDragging": true
       },
       "fs": {
         "all": true

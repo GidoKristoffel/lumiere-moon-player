@@ -15,7 +15,7 @@ import {
     IconToggleBtnComponent
   ],
   templateUrl: './title-bar.component.html',
-  styleUrl: './title-bar.component.css'
+  styleUrl: './title-bar.component.scss'
 })
 export class TitleBarComponent {
   constructor(private windowService: WindowService) {}
