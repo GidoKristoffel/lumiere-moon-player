@@ -38,16 +38,31 @@ button {
   padding: $padding-btn;
   border: 2px solid $border-btn;
 
+  & svg > g {
+    stroke: $svg-btn-color;
+    fill: $svg-btn-color;
+  }
+
   &:hover {
     color: $text-color-hover;
     border-color: $border-btn-hover;
     background-color: $background-btn-hover;
+
+    & svg > g {
+      stroke: $svg-btn-color-hover;
+      fill: $svg-btn-color-hover;
+    }
   }
 
   &:active {
     color: $text-color-active;
     border-color: $border-btn-active;
     background-color: $background-btn-active;
+
+    & svg > g {
+      stroke: $svg-btn-color-active;
+      fill: $svg-btn-color-active;
+    }
   }
 }
 
