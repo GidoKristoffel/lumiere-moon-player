@@ -12,7 +12,7 @@ import { TitleBarComponent } from "../../modules/player/components/title-bar/tit
         TitleBarComponent
     ],
   templateUrl: './video-selection-page.component.html',
-  styleUrl: './video-selection-page.component.css'
+  styleUrl: './video-selection-page.components.scss'
 })
 export class VideoSelectionPageComponent {
 
