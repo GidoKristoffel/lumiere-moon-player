@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { NgOptimizedImage } from "@angular/common";
-import { IconBtnComponent } from "../../../../shared/components/buttons/icon-btn/icon-btn.component";
-import { WindowService } from "../../../../core/services/window/window.service";
+import { IconBtnComponent } from "../buttons/icon-btn/icon-btn.component";
+import { WindowService } from "../../../core/services/window/window.service";
 import {
   IconToggleBtnComponent
-} from "../../../../shared/components/buttons/icon-toggle-btn/icon-toggle-btn.component";
+} from "../buttons/icon-toggle-btn/icon-toggle-btn.component";
 
 @Component({
   selector: 'lmp-title-bar',

@@ -1,1 +1,10 @@
-<p>control-panel works!</p>
+<div class="btn-container">
+    <lmp-icon-toggle-btn
+            btnSize="38"
+            iconSize="27"
+            enabledIcon="assets/images/pause.svg"
+            disabledIcon="assets/images/play.svg"
+            (onClick)="togglePlayVideo($event)"
+    ></lmp-icon-toggle-btn>
+    <lmp-time-display [totalTime]="totalDurationInSeconds()" [currentTime]="currentPlaybackTimeInSeconds()"></lmp-time-display>
+</div>

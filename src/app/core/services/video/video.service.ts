@@ -1,27 +1,43 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
+import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideoService {
-  private video: string | null = null;
+  private url: string | null = null;
+  private element: HTMLVideoElement | undefined;
+  private elementReadySubject: EventEmitter<void> = new EventEmitter<void>();
 
   constructor() {
-    this.set(localStorage.getItem('videoUrl'));
+    this.setUrl(localStorage.getItem('videoUrl'));
   }
 
-  public get(): string | null {
-    return this.video;
+  public getUrl(): string | null {
+    return this.url;
   }
 
-  public set(video: string | null): void {
-    this.video = video;
-    if (this.video) {
-      localStorage.setItem('videoUrl', this.video);
+  public setUrl(url: string | null): void {
+    this.url = url;
+    if (this.url) {
+      localStorage.setItem('videoUrl', this.url);
     }
   }
 
+  public getElement(): HTMLVideoElement | undefined {
+    return this.element;
+  }
+
+  public setElement(videoElement: HTMLVideoElement) {
+    this.element = videoElement;
+    this.elementReadySubject.emit();
+  }
+
   public isAvailable(): boolean {
-    return Boolean(this.video);
+    return Boolean(this.url);
+  }
+
+  get onElementReady(): Observable<void> {
+    return this.elementReadySubject.asObservable();
   }
 }
