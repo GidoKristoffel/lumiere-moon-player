@@ -18,7 +18,7 @@ export class IconToggleBtnComponent implements OnChanges {
   @Input() enabledIcon: string = '';
   @Input() disabledIcon: string = '';
   @Input() iconSize: string = '';
-  @Output() click: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() onClick: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public currentIcon!: string;
 
@@ -28,9 +28,9 @@ export class IconToggleBtnComponent implements OnChanges {
     }
   }
 
-  public onClick(): void {
+  public onEmit(): void {
     this.toggle();
-    this.click.emit(this.currentIcon === this.enabledIcon);
+    this.onClick.emit(this.currentIcon === this.enabledIcon);
   }
 
   private toggle(): void {

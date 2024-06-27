@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {
   VideoSelectionComponent
 } from "../../modules/video-selection/components/video-selection/video-selection.component";
-import { TitleBarComponent } from "../../modules/player/components/title-bar/title-bar.component";
+import { TitleBarComponent } from "../../shared/components/title-bar/title-bar.component";
 
 @Component({
   selector: 'lmp-video-selection-page',

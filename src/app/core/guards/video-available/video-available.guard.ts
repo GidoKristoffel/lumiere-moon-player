@@ -1,6 +1,6 @@
 import { CanActivateFn, Router } from '@angular/router';
-import { VideoService } from "../../services/video/video.service";
 import { inject } from "@angular/core";
+import { VideoService } from "../../services/video/video.service";
 
 export const videoAvailableGuard: CanActivateFn = (): boolean => {
   const videoService: VideoService = inject(VideoService);

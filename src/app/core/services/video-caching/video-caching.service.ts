@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { VideoService } from "../video/video.service";
+import { VideoService } from "../video-storage/video-storage.service";
 
 @Injectable({
   providedIn: 'root'

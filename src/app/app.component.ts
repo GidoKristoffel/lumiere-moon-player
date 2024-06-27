@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ControlPanelComponent } from "./modules/player/components/control-panel/control-panel.component";
-import { TitleBarComponent } from "./modules/player/components/title-bar/title-bar.component";
+import { TitleBarComponent } from "./shared/components/title-bar/title-bar.component";
 
 @Component({
   selector: 'app-root',

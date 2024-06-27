@@ -13,9 +13,9 @@ export class IconBtnComponent {
     @Input() btnSize: string = '';
     @Input() icon: string = '';
     @Input() iconSize: string = '';
-    @Output() click: EventEmitter<void> = new EventEmitter();
+    @Output() onClick: EventEmitter<void> = new EventEmitter();
 
-    public onClick(): void {
-        this.click.emit();
+    public onEmit(): void {
+        this.onClick.emit();
     }
 }
