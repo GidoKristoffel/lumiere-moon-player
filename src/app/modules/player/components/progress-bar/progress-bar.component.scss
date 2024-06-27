@@ -1,0 +1,20 @@
+.progress-bar-container {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: height 0.3s;
+  cursor: pointer;
+}
+
+.progress-bar-container:hover {
+  height: 10px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #ff0000;
+  width: 0%;
+}

@@ -3,6 +3,7 @@ import { ControlPanelComponent } from "../../modules/player/components/control-p
 import { TitleBarComponent } from "../../shared/components/title-bar/title-bar.component";
 import { NgIf } from "@angular/common";
 import { VideoService } from "../../core/services/video/video.service";
+import { VideoControlService } from "../../modules/player/services/video-control.service";
 
 
 @Component({
@@ -22,6 +23,7 @@ export class PlayerPageComponent implements OnInit, AfterViewInit  {
 
   constructor(
       private videoService: VideoService,
+      private videoControlService: VideoControlService,
   ) {}
 
   ngOnInit(): void {
@@ -30,5 +32,9 @@ export class PlayerPageComponent implements OnInit, AfterViewInit  {
 
   ngAfterViewInit() {
     this.videoService.setElement(this.videoPlayer.nativeElement);
+  }
+
+  public updateProgressBar(): void {
+    this.videoControlService.updateProgressBar();
   }
 }

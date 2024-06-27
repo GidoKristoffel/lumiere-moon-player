@@ -8,6 +8,7 @@ import { take } from "rxjs";
 export class VideoControlService {
   public totalDuration: WritableSignal<number> = signal<number>(0);
   public currentPlaybackTime: WritableSignal<number> = signal<number>(0);
+  public progress: WritableSignal<number> = signal<number>(0);
 
   constructor(private videoService: VideoService) {
     this.initVideoTime();
@@ -18,6 +19,27 @@ export class VideoControlService {
       this.play();
     } else {
       this.pause();
+    }
+  }
+
+  public updateProgressBar(): void {
+    const video = this.videoService.getElement();
+    if (video) {
+      const progressPercent = (video.currentTime / video.duration) * 100;
+      this.progress.set(progressPercent);
+    }
+  }
+
+  public videoControlService(event: MouseEvent): void {
+    const video = this.videoService.getElement();
+
+    if (video) {
+      const progressBarContainer = event.currentTarget as HTMLElement;
+      const clickPosition = event.offsetX;
+      const containerWidth = progressBarContainer.clientWidth;
+      const clickPositionPercent = (clickPosition / containerWidth);
+      const newTime = clickPositionPercent * video.duration;
+      video.currentTime = newTime;
     }
   }
 
