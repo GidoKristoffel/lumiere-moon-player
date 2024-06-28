@@ -38,8 +38,8 @@ export class VideoControlService {
       const clickPosition = event.offsetX;
       const containerWidth = progressBarContainer.clientWidth;
       const clickPositionPercent = (clickPosition / containerWidth);
-      const newTime = clickPositionPercent * video.duration;
-      video.currentTime = newTime;
+      video.currentTime = clickPositionPercent * video.duration;
+      this.progress.set((video.currentTime / video.duration) * 100);
     }
   }
 
