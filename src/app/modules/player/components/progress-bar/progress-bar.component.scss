@@ -1,20 +1,22 @@
+@import '../../../../shared/styles/constants';
+
 .progress-bar-container {
-  position: absolute;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-  height: 5px;
-  background-color: rgba(0, 0, 0, 0.5);
+  height: 10px;
+  background-color: $background-progress-bar;
   transition: height 0.3s;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
 
 .progress-bar-container:hover {
-  height: 10px;
+  .progress-bar {
+    height: 10px;
+  }
 }
 
 .progress-bar {
-  height: 100%;
-  background-color: #ff0000;
-  width: 0%;
+  height: 5px;
+  background-color: $background-progress-bar-line;
+  width: 0;
 }
