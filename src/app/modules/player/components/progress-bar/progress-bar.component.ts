@@ -9,6 +9,7 @@ import { VideoControlService } from "../../services/video-control.service";
   styleUrl: './progress-bar.component.scss'
 })
 export class ProgressBarComponent {
+  public buffered = this.videoControlService.buffered.asReadonly();
   public progress = this.videoControlService.progress.asReadonly();
 
   constructor(private videoControlService: VideoControlService) {}

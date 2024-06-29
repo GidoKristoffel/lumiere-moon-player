@@ -9,6 +9,7 @@ export class VideoControlService {
   public totalDuration: WritableSignal<number> = signal<number>(0);
   public currentPlaybackTime: WritableSignal<number> = signal<number>(0);
   public progress: WritableSignal<number> = signal<number>(0);
+  public buffered: WritableSignal<number> = signal<number>(0);
 
   constructor(private videoService: VideoService) {
     this.initVideoTime();
@@ -25,8 +26,11 @@ export class VideoControlService {
   public updateProgressBar(): void {
     const video = this.videoService.getElement();
     if (video) {
-      const progressPercent = (video.currentTime / video.duration) * 100;
-      this.progress.set(progressPercent);
+      this.progress.set((video.currentTime / video.duration) * 100);
+
+      if (video.buffered.length > 0) {
+        this.buffered.set((video.buffered.end(video.buffered.length - 1) / video.duration) * 100);
+      }
     }
   }
 
