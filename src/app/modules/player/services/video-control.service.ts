@@ -10,6 +10,7 @@ export class VideoControlService {
   public currentPlaybackTime: WritableSignal<number> = signal<number>(0);
   public progress: WritableSignal<number> = signal<number>(0);
   public buffered: WritableSignal<number> = signal<number>(0);
+  private isSeeking = false;
 
   constructor(private videoService: VideoService) {
     this.initVideoTime();
@@ -24,17 +25,19 @@ export class VideoControlService {
   }
 
   public updateProgressBar(): void {
-    const video = this.videoService.getElement();
-    if (video) {
-      this.progress.set((video.currentTime / video.duration) * 100);
+    if (!this.isSeeking) {
+      const video = this.videoService.getElement();
+      if (video) {
+        this.progress.set((video.currentTime / video.duration) * 100);
 
-      if (video.buffered.length > 0) {
-        this.buffered.set((video.buffered.end(video.buffered.length - 1) / video.duration) * 100);
+        if (video.buffered.length > 0) {
+          this.buffered.set((video.buffered.end(video.buffered.length - 1) / video.duration) * 100);
+        }
       }
     }
   }
 
-  public videoControlService(event: MouseEvent): void {
+  public seekVideo(event: MouseEvent): void {
     const video = this.videoService.getElement();
 
     if (video) {
@@ -44,6 +47,36 @@ export class VideoControlService {
       const clickPositionPercent = (clickPosition / containerWidth);
       video.currentTime = clickPositionPercent * video.duration;
       this.progress.set((video.currentTime / video.duration) * 100);
+    }
+  }
+
+  public startSeeking(event: MouseEvent) {
+    this.isSeeking = true;
+    this.seekVideo(event);
+  }
+
+  public stopSeeking() {
+    this.isSeeking = false;
+  }
+
+  public onMouseMove(event: MouseEvent, progressBarContainer: HTMLDivElement): void {
+    if (this.isSeeking) {
+      console.log('+++++');
+      const rect = progressBarContainer.getBoundingClientRect();
+      const offsetX = event.clientX - rect.left;
+      const containerWidth = progressBarContainer.clientWidth;
+      const clickPositionPercent = (offsetX / containerWidth);
+      const video = this.videoService.getElement();
+      if (video) {
+        video.currentTime = clickPositionPercent * video.duration;
+        this.progress.set((video.currentTime / video.duration) * 100);
+      }
+    }
+  }
+
+  public onMouseUp() {
+    if (this.isSeeking) {
+      this.stopSeeking();
     }
   }
 
