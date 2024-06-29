@@ -1,3 +1,4 @@
 <div class="progress-bar-container" (click)="seekVideo($event)">
+    <div class="progress-buffered" [style.width.%]="buffered()"></div>
     <div class="progress-bar" [style.width.%]="progress()"></div>
 </div>

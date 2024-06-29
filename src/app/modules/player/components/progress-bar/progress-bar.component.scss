@@ -1,22 +1,53 @@
 @import '../../../../shared/styles/constants';
 
+//.progress-bar-container {
+//  height: 10px;
+//  background-color: $background-progress-bar;
+//  transition: height 0.3s;
+//  cursor: pointer;
+//  display: flex;
+//  align-items: center;
+//}
+//
+//.progress-bar-container:hover {
+//  .progress-bar {
+//    height: 10px;
+//  }
+//}
+//
+//.progress-bar {
+//  height: 5px;
+//  background-color: $background-progress-bar-line;
+//  width: 0;
+//}
+
 .progress-bar-container {
-  height: 10px;
-  background-color: $background-progress-bar;
-  transition: height 0.3s;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 5px;
+  background-color: rgba(0, 0, 0, 0.1);
   cursor: pointer;
-  display: flex;
-  align-items: center;
+  transition: height 0.2s;
 }
 
 .progress-bar-container:hover {
-  .progress-bar {
-    height: 10px;
-  }
+  height: 10px;
+}
+
+.progress-buffered {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 .progress-bar {
-  height: 5px;
-  background-color: $background-progress-bar-line;
-  width: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: rgba(255, 0, 0, 0.8);
+  transition: width 0.1s;
 }
