@@ -1,53 +1,42 @@
 @import '../../../../shared/styles/constants';
 
-//.progress-bar-container {
-//  height: 10px;
-//  background-color: $background-progress-bar;
-//  transition: height 0.3s;
-//  cursor: pointer;
-//  display: flex;
-//  align-items: center;
-//}
-//
-//.progress-bar-container:hover {
-//  .progress-bar {
-//    height: 10px;
-//  }
-//}
-//
-//.progress-bar {
-//  height: 5px;
-//  background-color: $background-progress-bar-line;
-//  width: 0;
-//}
-
 .progress-bar-container {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 5px;
-  background-color: rgba(0, 0, 0, 0.1);
+  height: 10px;
+  background-color: $background-progress-bar;
+  transition: height 0.3s;
   cursor: pointer;
-  transition: height 0.2s;
+  display: flex;
+  align-items: center;
+  position: relative;
 }
 
 .progress-bar-container:hover {
-  height: 10px;
+  .progress-bar, .progress-buffered {
+    height: 10px;
+  }
 }
 
 .progress-buffered {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: $background-progress-bar-buffered;
+  height: 5px;
 }
 
 .progress-bar {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
+  height: 5px;
+  background-color: $background-progress-bar-line;
+  width: 0;
+}
+
+.progress-thumb {
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
   background-color: rgba(255, 0, 0, 0.8);
-  transition: width 0.1s;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  transition: width 0.2s, height 0.2s;
 }
