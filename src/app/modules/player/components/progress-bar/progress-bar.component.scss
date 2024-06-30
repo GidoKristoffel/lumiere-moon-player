@@ -3,7 +3,6 @@
 .progress-bar-container {
   height: 10px;
   background-color: $background-progress-bar;
-  transition: height 0.3s;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -13,6 +12,13 @@
 .progress-bar-container:hover {
   .progress-bar, .progress-buffered {
     height: 10px;
+    transition: height 0.3s;
+  }
+
+  .progress-thumb {
+    width: 13px;
+    height: 13px;
+    transition: width 0.3s, height 0.3s;
   }
 }
 
@@ -20,6 +26,7 @@
   position: absolute;
   background-color: $background-progress-bar-buffered;
   height: 5px;
+  transition: height 0.3s;
 }
 
 .progress-bar {
@@ -27,16 +34,17 @@
   height: 5px;
   background-color: $background-progress-bar-line;
   width: 0;
+  transition: height 0.3s;
 }
 
 .progress-thumb {
   position: absolute;
   top: 50%;
-  width: 10px;
-  height: 10px;
-  background-color: rgba(255, 0, 0, 0.8);
+  height: 0;
+  width: 0;
+  background-color: $background-progress-bar-thumb;
   border-radius: 50%;
   transform: translate(-50%, -50%);
   cursor: pointer;
-  transition: width 0.2s, height 0.2s;
+  transition: width 0.3s, height 0.3s;
 }
