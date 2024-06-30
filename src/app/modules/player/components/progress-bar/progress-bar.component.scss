@@ -7,12 +7,17 @@
   display: flex;
   align-items: center;
   position: relative;
+  margin: 0 10px;
+  border-radius: 5px;
+  width: calc(100% - 20px);
+  box-sizing: border-box;
 }
 
 .progress-bar-container:hover {
   .progress-bar, .progress-buffered {
     height: 10px;
-    transition: height 0.3s;
+    transition: height 0.3s, margin 0.3s;
+    margin: 0;
   }
 
   .progress-thumb {
@@ -26,7 +31,9 @@
   position: absolute;
   background-color: $background-progress-bar-buffered;
   height: 5px;
-  transition: height 0.3s;
+  transition: height 0.3s, margin 0.3s;
+  border-radius: 5px;
+  margin: 0 5px;
 }
 
 .progress-bar {
@@ -34,7 +41,9 @@
   height: 5px;
   background-color: $background-progress-bar-line;
   width: 0;
-  transition: height 0.3s;
+  transition: height 0.3s, margin 0.3s;
+  border-radius: 5px;
+  margin: 0 5px;
 }
 
 .progress-thumb {
@@ -48,3 +57,5 @@
   cursor: pointer;
   transition: width 0.3s, height 0.3s;
 }
+
+.progress-bar-wrapper {}
