@@ -1,4 +1,4 @@
-import { Component, ElementRef, HostListener, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
 import { VideoControlService } from "../../services/video-control.service";
 
 @Component({
@@ -24,10 +24,6 @@ export class ProgressBarComponent {
   public progress = this.videoControlService.progress.asReadonly();
 
   constructor(private videoControlService: VideoControlService) {}
-
-  public seekVideo(event: MouseEvent): void {
-    this.videoControlService.seekVideo(event);
-  }
 
   public startSeeking(event: MouseEvent): void {
     this.videoControlService.startSeeking(event);
