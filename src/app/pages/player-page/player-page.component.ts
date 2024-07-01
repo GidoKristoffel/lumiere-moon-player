@@ -3,7 +3,7 @@ import { ControlPanelComponent } from "../../modules/player/components/control-p
 import { TitleBarComponent } from "../../shared/components/title-bar/title-bar.component";
 import { NgIf } from "@angular/common";
 import { VideoService } from "../../core/services/video/video.service";
-import { VideoControlService } from "../../modules/player/services/video-control.service";
+import { VideoControlService } from "../../modules/player/services/video-control/video-control.service";
 
 
 @Component({

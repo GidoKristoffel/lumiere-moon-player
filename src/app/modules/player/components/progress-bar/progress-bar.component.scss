@@ -7,9 +7,9 @@
   display: flex;
   align-items: center;
   position: relative;
-  margin: 0 10px;
-  border-radius: 5px;
-  width: calc(100% - 20px);
+  //margin: 0 10px;
+  //border-radius: 5px;
+  //width: calc(100% - 20px);
   box-sizing: border-box;
 }
 
@@ -42,8 +42,8 @@
   background-color: $background-progress-bar-line;
   width: 0;
   transition: height 0.3s, margin 0.3s;
-  border-radius: 5px;
-  margin: 0 5px;
+  //border-radius: 5px;
+  //margin: 0 5px;
 }
 
 .progress-thumb {
@@ -57,5 +57,3 @@
   cursor: pointer;
   transition: width 0.3s, height 0.3s;
 }
-
-.progress-bar-wrapper {}
