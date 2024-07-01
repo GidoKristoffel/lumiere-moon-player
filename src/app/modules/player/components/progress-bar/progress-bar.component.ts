@@ -1,5 +1,7 @@
-import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { VideoControlService } from "../../services/video-control/video-control.service";
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { VideoBufferingViewService } from "../../services/video-buffering-view/video-buffering-view.service";
+import { VideoProgressViewService } from "../../services/video-progress-view/video-progress-view.service";
+import { VideoProgressDragService } from "../../services/video-progress-drag/video-progress-drag.service";
 
 @Component({
   selector: 'lmp-progress-bar',
@@ -8,28 +10,27 @@ import { VideoControlService } from "../../services/video-control/video-control.
   templateUrl: './progress-bar.component.html',
   styleUrl: './progress-bar.component.scss'
 })
-export class ProgressBarComponent {
-  @HostListener('window:mousemove', ['$event'])
-  onMouseMove(event: MouseEvent) {
-    this.videoControlService.onMouseMove(event, this.progressBarContainer.nativeElement);
-  }
-
-  @HostListener('window:mouseup')
-  onMouseUp() {
-    this.videoControlService.onMouseUp();
-  }
-
+export class ProgressBarComponent implements AfterViewInit {
   @ViewChild('progressBarContainer') progressBarContainer!: ElementRef<HTMLDivElement>;
-  public buffered = this.videoControlService.buffered.asReadonly();
-  public progress = this.videoControlService.progress.asReadonly();
 
-  constructor(private videoControlService: VideoControlService) {}
+  public buffered = this.videoBufferingViewService.watch();
+  public progress = this.videoProgressViewService.watch();
 
-  public startSeeking(event: MouseEvent): void {
-    this.videoControlService.startSeeking(event);
+  constructor(
+      private videoBufferingViewService: VideoBufferingViewService,
+      private videoProgressViewService: VideoProgressViewService,
+      private videoProgressDragService: VideoProgressDragService,
+  ) {}
+
+  ngAfterViewInit() {
+    this.videoProgressDragService.init(this.progressBarContainer);
   }
 
-  public stopSeeking(): void {
-    this.videoControlService.stopSeeking();
+  public startMoving(event: MouseEvent): void {
+    this.videoProgressDragService.start(event);
+  }
+
+  public stopMoving(): void {
+    this.videoProgressDragService.stop();
   }
 }

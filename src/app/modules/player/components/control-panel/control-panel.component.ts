@@ -3,9 +3,9 @@ import {
   IconToggleBtnComponent
 } from "../../../../shared/components/buttons/icon-toggle-btn/icon-toggle-btn.component";
 import { TimeDisplayComponent } from "../time-display/time-display.component";
-import { VideoControlService } from "../../services/video-control/video-control.service";
 import { ProgressBarComponent } from "../progress-bar/progress-bar.component";
 import { VideoPlayingService } from "../../services/video-playing/video-playing.service";
+import { VideoTimeService } from "../../services/video-time/video-time.service";
 
 @Component({
   selector: 'lmp-control-panel',
@@ -19,15 +19,15 @@ import { VideoPlayingService } from "../../services/video-playing/video-playing.
   styleUrl: './control-panel.component.css'
 })
 export class ControlPanelComponent {
-  public totalDurationInSeconds = this.videoControlService.totalDuration;
-  public currentPlaybackTimeInSeconds = this.videoControlService.currentPlaybackTime;
+  public totalDurationInSeconds = this.videoTimeService.totalDuration;
+  public currentPlaybackTimeInSeconds = this.videoTimeService.currentPlaybackTime;
 
   constructor(
       private videoPlayingService: VideoPlayingService,
-      private videoControlService: VideoControlService
+      private videoTimeService: VideoTimeService,
   ) {}
 
   public togglePlayVideo(playing: boolean): void {
-    this.videoPlayingService.toggle(playing);
+      this.videoPlayingService.toggle(playing);
   }
 }
