@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { VideoControlService } from "../../services/video-control.service";
+import { VideoControlService } from "../../services/video-control/video-control.service";
 
 @Component({
   selector: 'lmp-progress-bar',

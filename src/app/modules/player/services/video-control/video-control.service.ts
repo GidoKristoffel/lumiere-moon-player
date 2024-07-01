@@ -1,5 +1,5 @@
 import { Injectable, signal, WritableSignal } from '@angular/core';
-import { VideoService } from "../../../core/services/video/video.service";
+import { VideoService } from "../../../../core/services/video/video.service";
 import { take } from "rxjs";
 
 @Injectable({
@@ -14,14 +14,6 @@ export class VideoControlService {
 
   constructor(private videoService: VideoService) {
     this.initVideoTime();
-  }
-
-  public togglePlayVideo(playing: boolean): void {
-    if (playing) {
-      this.play();
-    } else {
-      this.pause();
-    }
   }
 
   public updateProgressBar(): void {
@@ -61,7 +53,6 @@ export class VideoControlService {
 
   public onMouseMove(event: MouseEvent, progressBarContainer: HTMLDivElement): void {
     if (this.isSeeking) {
-      console.log('+++++');
       const rect = progressBarContainer.getBoundingClientRect();
       const offsetX = event.clientX - rect.left;
       const containerWidth = progressBarContainer.clientWidth;
@@ -89,19 +80,5 @@ export class VideoControlService {
         videoElement.addEventListener('timeupdate', () => this.currentPlaybackTime.set(videoElement.currentTime * 1000));
       }
     });
-  }
-
-  private play(): void {
-    const videoElement: HTMLVideoElement | undefined = this.videoService.getElement();
-    if (videoElement && videoElement.paused) {
-      videoElement.play().then();
-    }
-  }
-
-  private pause(): void {
-    const videoElement: HTMLVideoElement | undefined = this.videoService.getElement();
-    if (videoElement && !videoElement.paused) {
-      videoElement.pause();
-    }
   }
 }

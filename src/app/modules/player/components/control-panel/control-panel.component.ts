@@ -1,10 +1,11 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   IconToggleBtnComponent
 } from "../../../../shared/components/buttons/icon-toggle-btn/icon-toggle-btn.component";
 import { TimeDisplayComponent } from "../time-display/time-display.component";
-import { VideoControlService } from "../../services/video-control.service";
+import { VideoControlService } from "../../services/video-control/video-control.service";
 import { ProgressBarComponent } from "../progress-bar/progress-bar.component";
+import { VideoPlayingService } from "../../services/video-playing/video-playing.service";
 
 @Component({
   selector: 'lmp-control-panel',
@@ -21,9 +22,12 @@ export class ControlPanelComponent {
   public totalDurationInSeconds = this.videoControlService.totalDuration;
   public currentPlaybackTimeInSeconds = this.videoControlService.currentPlaybackTime;
 
-  constructor(private videoControlService: VideoControlService) {}
+  constructor(
+      private videoPlayingService: VideoPlayingService,
+      private videoControlService: VideoControlService
+  ) {}
 
   public togglePlayVideo(playing: boolean): void {
-    this.videoControlService.togglePlayVideo(playing);
+    this.videoPlayingService.toggle(playing);
   }
 }
