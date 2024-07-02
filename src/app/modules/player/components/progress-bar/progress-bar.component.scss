@@ -8,22 +8,21 @@
   align-items: center;
   position: relative;
   padding: 0 10px;
-  //border-radius: 5px;
-  //width: calc(100% - 20px);
   box-sizing: border-box;
 }
 
 .progress-bar-wrapper {
+  position: relative;
   width: 100%;
-  height: 10px;
+  height: 6px;
   background-color: $background-progress-bar;
+  transition: height 0.3s;
 }
 
 .progress-bar-container:hover {
-  .progress-bar, .progress-buffered {
+  .progress-bar-wrapper {
     height: 10px;
-    transition: height 0.3s, margin 0.3s;
-    margin: 0;
+    transition: height 0.3s;
   }
 
   .progress-thumb {
@@ -36,20 +35,16 @@
 .progress-buffered {
   position: absolute;
   background-color: $background-progress-bar-buffered;
-  height: 5px;
+  height: 100%;
   transition: height 0.3s, margin 0.3s;
-  border-radius: 5px;
-  margin: 0 5px;
 }
 
 .progress-bar {
   position: absolute;
-  height: 5px;
+  height: 100%;
   background-color: $background-progress-bar-line;
   width: 0;
   transition: height 0.3s, margin 0.3s;
-  //border-radius: 5px;
-  //margin: 0 5px;
 }
 
 .progress-thumb {
