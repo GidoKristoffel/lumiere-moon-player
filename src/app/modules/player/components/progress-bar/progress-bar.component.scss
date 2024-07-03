@@ -23,18 +23,15 @@
 .progress-bar-wrapper:hover {
   border-color: $background-progress-bar-border;
   transition: border-color 0.3s;
-}
-
-.progress-bar-padding:hover + {
-  & .progress-bar-wrapper {
-    border-color: $background-progress-bar-border;
-    transition: border-color 0.3s;
-  }
 
   & .progress-thumb {
     width: 13px;
     height: 13px;
     transition: width 0.3s, height 0.3s;
+  }
+
+  & .progress-bar-hover {
+    display: block;
   }
 }
 
@@ -42,21 +39,35 @@
   position: absolute;
   height: 12px;
   width: 100%;
-  top: -14px;
+  top: -13px;
   background: unset;
   border: 1px solid unset;
   box-sizing: border-box;
 }
 
-.progress-buffered {
+.progress-bar-hover, .progress-buffered, .progress-bar {
   position: absolute;
+}
+
+.progress-bar-hover {
+  background: $background-progress-bar-hover;
+  height: 6px;
+  z-index: 1000;
+  position: absolute;
+  box-sizing: border-box;
+  max-width: 100%;
+  display: none;
+}
+
+.progress-buffered {
+  z-index: 500;
   background-color: $background-progress-bar-buffered;
   height: 100%;
   transition: height 0.3s, margin 0.3s;
 }
 
 .progress-bar {
-  position: absolute;
+  z-index: 2000;
   height: 100%;
   background-color: $background-progress-bar-line;
   width: 0;
@@ -65,6 +76,7 @@
 
 .progress-thumb {
   position: absolute;
+  z-index: 3000;
   top: 50%;
   height: 0;
   width: 0;
