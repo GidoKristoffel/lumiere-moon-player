@@ -11,7 +11,7 @@ import { VideoProgressDragService } from "../../services/video-progress-drag/vid
   styleUrl: './progress-bar.component.scss'
 })
 export class ProgressBarComponent implements AfterViewInit {
-  @ViewChild('progressBarContainer') progressBarContainer!: ElementRef<HTMLDivElement>;
+  @ViewChild('progressBarWrapper') progressBarWrapper!: ElementRef<HTMLDivElement>;
 
   public buffered = this.videoBufferingViewService.watch();
   public progress = this.videoProgressViewService.watch();
@@ -23,7 +23,7 @@ export class ProgressBarComponent implements AfterViewInit {
   ) {}
 
   ngAfterViewInit() {
-    this.videoProgressDragService.init(this.progressBarContainer);
+    this.videoProgressDragService.init(this.progressBarWrapper);
   }
 
   public startMoving(event: MouseEvent): void {

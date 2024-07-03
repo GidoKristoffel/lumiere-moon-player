@@ -23,9 +23,9 @@ export class VideoProgressDragService extends WatchVideoElementReady implements 
     this.renderer = this.rendererFactory.createRenderer(null, null);
   }
 
-  public init(progressBarContainer: ElementRef<HTMLDivElement>): void {
+  public init(progressBarWrapper: ElementRef<HTMLDivElement>): void {
     this.mouseMoveListener = this.renderer.listen('window', 'mousemove', (event) => {
-      this.onMouseMove(event, progressBarContainer.nativeElement);
+      this.onMouseMove(event, progressBarWrapper.nativeElement);
     });
     this.mouseUpListener = this.renderer.listen('window', 'mouseup', () => {
       this.videoProgressDragStatusService.deny();
@@ -36,9 +36,9 @@ export class VideoProgressDragService extends WatchVideoElementReady implements 
     this.videoProgressDragStatusService.allow();
 
     if (this.videoElement) {
-      const progressBarContainer = event.currentTarget as HTMLElement;
+      const progressBarWrapper = event.currentTarget as HTMLElement;
       const clickPosition = event.offsetX;
-      const containerWidth = progressBarContainer.clientWidth;
+      const containerWidth = progressBarWrapper.clientWidth;
       const clickPositionPercent = (clickPosition / containerWidth);
       this.videoElement.currentTime = clickPositionPercent * this.videoElement.duration;
       this.videoProgressViewService.update();
@@ -49,11 +49,11 @@ export class VideoProgressDragService extends WatchVideoElementReady implements 
     this.videoProgressDragStatusService.deny();
   }
 
-  private onMouseMove(event: MouseEvent, progressBarContainer: HTMLDivElement): void {
+  private onMouseMove(event: MouseEvent, progressBarWrapper: HTMLDivElement): void {
     if (this.videoProgressDragStatusService.get()) {
-      const rect = progressBarContainer.getBoundingClientRect();
+      const rect = progressBarWrapper.getBoundingClientRect();
       const offsetX = event.clientX - rect.left;
-      const containerWidth = progressBarContainer.clientWidth;
+      const containerWidth = progressBarWrapper.clientWidth;
       const clickPositionPercent = (offsetX / containerWidth);
       if (this.videoElement) {
         this.videoElement.currentTime = clickPositionPercent * this.videoElement.duration;

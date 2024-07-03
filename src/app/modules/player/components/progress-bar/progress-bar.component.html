@@ -1,5 +1,5 @@
-<div #progressBarContainer class="progress-bar-container" (mousedown)="startMoving($event)">
-    <div class="progress-bar-wrapper">
+<div class="progress-bar-container">
+    <div class="progress-bar-wrapper" #progressBarWrapper (mousedown)="startMoving($event)">
         <div class="progress-buffered" [style.width.%]="buffered()"></div>
         <div class="progress-bar" [style.width.%]="progress()"></div>
         <div class="progress-thumb"
