@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { VideoBufferingViewService } from "../../services/video-buffering-view/video-buffering-view.service";
 import { VideoProgressViewService } from "../../services/video-progress-view/video-progress-view.service";
 import { VideoProgressDragService } from "../../services/video-progress-drag/video-progress-drag.service";
+import { VideoProgressBarHoverService } from "../../services/video-progress-bar-hover/video-progress-bar-hover.service";
 
 @Component({
   selector: 'lmp-progress-bar',
@@ -15,11 +16,13 @@ export class ProgressBarComponent implements AfterViewInit {
 
   public buffered = this.videoBufferingViewService.watch();
   public progress = this.videoProgressViewService.watch();
+  public hover = this.videoProgressBarHoverService.watch();
 
   constructor(
       private videoBufferingViewService: VideoBufferingViewService,
       private videoProgressViewService: VideoProgressViewService,
       private videoProgressDragService: VideoProgressDragService,
+      private videoProgressBarHoverService: VideoProgressBarHoverService,
   ) {}
 
   ngAfterViewInit() {
@@ -32,5 +35,9 @@ export class ProgressBarComponent implements AfterViewInit {
 
   public stopMoving(): void {
     this.videoProgressDragService.stop();
+  }
+
+  public moving(event: MouseEvent): void {
+    this.videoProgressBarHoverService.update(event);
   }
 }
