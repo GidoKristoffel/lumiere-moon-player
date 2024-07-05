@@ -6,6 +6,7 @@ import { TimeDisplayComponent } from "../time-display/time-display.component";
 import { ProgressBarComponent } from "../progress-bar/progress-bar.component";
 import { VideoPlayingService } from "../../services/video-playing/video-playing.service";
 import { VideoTimeService } from "../../services/video-time/video-time.service";
+import { TimeTooltipComponent } from "../time-tooltip/time-tooltip.component";
 
 @Component({
   selector: 'lmp-control-panel',
@@ -13,7 +14,8 @@ import { VideoTimeService } from "../../services/video-time/video-time.service";
   imports: [
     IconToggleBtnComponent,
     TimeDisplayComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    TimeTooltipComponent
   ],
   templateUrl: './control-panel.component.html',
   styleUrl: './control-panel.component.css'
