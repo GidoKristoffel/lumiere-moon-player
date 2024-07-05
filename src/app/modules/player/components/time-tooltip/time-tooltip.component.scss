@@ -1,0 +1,16 @@
+.progress-bar-container {
+  position: relative;
+}
+
+.time-tooltip {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.75);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateY(-100%);
+  display: none;
+}
