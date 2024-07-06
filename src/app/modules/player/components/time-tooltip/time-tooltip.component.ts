@@ -1,5 +1,6 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { NgStyle } from "@angular/common";
+import { NgStyle, Time } from "@angular/common";
+import { VideoTimeTooltipService } from "../../services/video-time-tooltip/video-time-tooltip.service";
 
 @Component({
   selector: 'lmp-time-tooltip',
@@ -13,6 +14,9 @@ import { NgStyle } from "@angular/common";
 export class TimeTooltipComponent {
   @ViewChild('timeTooltip') timeTooltip!: ElementRef<HTMLDivElement>;
 
-  hoverTime = '00:00';
+  constructor(private videoTimeTooltipService: VideoTimeTooltipService) {
+  }
+
+  hoverTime = this.videoTimeTooltipService.watchTime();
   tooltipStyle = {};
 }
