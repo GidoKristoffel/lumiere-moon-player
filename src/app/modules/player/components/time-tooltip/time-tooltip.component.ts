@@ -17,6 +17,7 @@ export class TimeTooltipComponent {
   constructor(private videoTimeTooltipService: VideoTimeTooltipService) {
   }
 
-  hoverTime = this.videoTimeTooltipService.watchTime();
-  tooltipStyle = {};
+  time = this.videoTimeTooltipService.watchTime();
+  display = this.videoTimeTooltipService.watchDisplay();
+  leftPosition = this.videoTimeTooltipService.watchLeftPosition();
 }
