@@ -1,4 +1,4 @@
-.progress-bar-container {
+:host {
   position: relative;
 }
 
@@ -13,4 +13,5 @@
   pointer-events: none;
   transform: translateY(-100%);
   display: none;
+  top: -25px;
 }
