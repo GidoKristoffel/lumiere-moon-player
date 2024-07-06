@@ -1,1 +1,1 @@
-<div #timeTooltip class="time-tooltip" [ngStyle]="tooltipStyle">{{ hoverTime() }}</div>
+<div #timeTooltip class="time-tooltip" [style.display]="display()" [style.left.%]="leftPosition()">{{ time() }}</div>
