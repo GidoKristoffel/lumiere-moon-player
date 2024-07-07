@@ -14,6 +14,14 @@ export class VideoTimeTooltipService {
     return this.time.asReadonly();
   }
 
+  public setDisplay(value: 'none' | 'block'): void {
+    this.display.set(value);
+  }
+
+  public setLeftPosition(value: number): void {
+    this.leftPosition.set(value);
+  }
+
   public watchDisplay(): Signal<string> {
     return this.display.asReadonly();
   }
