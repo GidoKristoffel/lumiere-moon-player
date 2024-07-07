@@ -3,7 +3,6 @@ import { WatchVideoElementReady } from "../../classes/watch-video-element-ready/
 import { VideoService } from "../../../../core/services/video/video.service";
 import { VideoProgressViewService } from "../video-progress-view/video-progress-view.service";
 import { VideoProgressDragStatusService } from "../video-progress-drag-status/video-progress-drag-status.service";
-import { VideoProgressBarHoverService } from "../video-progress-bar-hover/video-progress-bar-hover.service";
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +16,6 @@ export class VideoProgressDragService extends WatchVideoElementReady implements 
   protected constructor(
       private rendererFactory: RendererFactory2,
       private videoProgressViewService: VideoProgressViewService,
-      private videoProgressBarHoverService: VideoProgressBarHoverService,
       private videoProgressDragStatusService: VideoProgressDragStatusService,
       protected override videoService: VideoService,
   ) {
