@@ -43,4 +43,12 @@ export class ProgressBarComponent implements AfterViewInit {
     this.videoProgressBarHoverService.update(event);
     this.videoTimeTooltipService.updatePosition(event);
   }
+
+  public onMouseEnter(): void {
+    this.videoTimeTooltipService.setDisplay(true);
+  }
+
+  public onMouseLeave(): void {
+    this.videoTimeTooltipService.setDisplay(false);
+  }
 }

@@ -30,6 +30,7 @@ export class VideoTimeTooltipService extends WatchVideoElementReady {
       const clickPositionPercent = (clickPosition / containerWidth);
       const currentTimeInMilliseconds = clickPositionPercent * this.videoElement.duration * 1000;
       const transformedTime = this.datePipe.transform(currentTimeInMilliseconds, 'mm:ss');
+      this.setLeftPosition(clickPositionPercent * 100);
       this.time.set(transformedTime || '00:00');
     }
   }
@@ -40,6 +41,10 @@ export class VideoTimeTooltipService extends WatchVideoElementReady {
 
   public watchDisplay(): Signal<string> {
     return this.display.asReadonly();
+  }
+
+  public setDisplay(value: boolean): void {
+    this.display.set(value ? 'block' : 'none');
   }
 
   public watchLeftPosition(): Signal<number> {
