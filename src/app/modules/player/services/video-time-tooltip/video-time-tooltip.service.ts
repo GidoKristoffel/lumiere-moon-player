@@ -1,10 +1,10 @@
 import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
 import { WatchVideoElementReady } from "../../classes/watch-video-element-ready/watch-video-element-ready";
 import { VideoService } from "../../../../core/services/video/video.service";
-import { formatDate } from "@angular/common";
+import { DatePipe } from "@angular/common";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class VideoTimeTooltipService extends WatchVideoElementReady {
   private time: WritableSignal<string> = signal<string>('00:00');
@@ -12,7 +12,8 @@ export class VideoTimeTooltipService extends WatchVideoElementReady {
   private leftPosition: WritableSignal<number> = signal<number>(0);
 
   constructor(
-      protected override videoService: VideoService
+      protected override videoService: VideoService,
+      private datePipe: DatePipe
   ) {
     super(videoService);
   }
@@ -23,13 +24,13 @@ export class VideoTimeTooltipService extends WatchVideoElementReady {
 
   public updatePosition(event: MouseEvent): void {
     if (this.videoElement) {
-      console.log('++++');
       const progressBarWrapper = event.currentTarget as HTMLElement;
       const clickPosition = event.offsetX;
       const containerWidth = progressBarWrapper.clientWidth;
       const clickPositionPercent = (clickPosition / containerWidth);
-      const time = String(((clickPositionPercent * this.videoElement.duration) / this.videoElement.duration) * 100);
-      this.time.set(formatDate(time, 'mm:ss', ''));
+      const currentTimeInMilliseconds = clickPositionPercent * this.videoElement.duration * 1000;
+      const transformedTime = this.datePipe.transform(currentTimeInMilliseconds, 'mm:ss');
+      this.time.set(transformedTime || '00:00');
     }
   }
 
