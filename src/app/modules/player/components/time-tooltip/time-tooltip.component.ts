@@ -15,10 +15,9 @@ import { VideoTimeTooltipService } from "../../services/video-time-tooltip/video
 export class TimeTooltipComponent {
   @ViewChild('timeTooltip') timeTooltip!: ElementRef<HTMLDivElement>;
 
-  constructor(private videoTimeTooltipService: VideoTimeTooltipService) {
-  }
+  constructor(private videoTimeTooltipService: VideoTimeTooltipService) {}
 
   time = this.videoTimeTooltipService.watchTime();
   display = this.videoTimeTooltipService.watchDisplay();
-  leftPosition = this.videoTimeTooltipService.watchLeftPosition();
+  position = this.videoTimeTooltipService.watchLeftPosition();
 }
