@@ -16,12 +16,10 @@ export class VideoProgressBarHoverService extends WatchVideoElementReady {
     return this.hover.asReadonly();
   }
 
-  public update(event: MouseEvent): void {
+  public update(eventOffsetX: number, progressBarWrapper: HTMLDivElement): void {
     if (this.videoElement) {
-      const progressBarWrapper = event.currentTarget as HTMLElement;
-      const clickPosition = event.offsetX;
       const containerWidth = progressBarWrapper.clientWidth;
-      this.hover.set((clickPosition / containerWidth) * 100);
+      this.hover.set((eventOffsetX / containerWidth) * 100);
     }
   }
 }

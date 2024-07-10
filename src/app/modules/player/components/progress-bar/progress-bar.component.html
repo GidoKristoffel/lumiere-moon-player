@@ -11,6 +11,7 @@
         <div class="progress-thumb"
              [style.left.%]="progress()"
              (mouseup)="stopMoving()"
+             (mousemove)="notMoving($event)"
         ></div>
         <div class="progress-bar-hover" [style.width.%]="hover()"></div>
     </div>

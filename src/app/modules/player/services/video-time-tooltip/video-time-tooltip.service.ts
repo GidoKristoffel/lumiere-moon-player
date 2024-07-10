@@ -1,53 +1,61 @@
-import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { WatchVideoElementReady } from "../../classes/watch-video-element-ready/watch-video-element-ready";
 import { VideoService } from "../../../../core/services/video/video.service";
 import { DatePipe } from "@angular/common";
+import { VideoTimeTooltipViewService } from "../video-time-tooltip-view/video-time-tooltip-view.service";
+import { VideoTimeTooltipPositionService } from "../video-time-tooltip-position/video-time-tooltip-position.service";
+import { VideoTimeTooltipElementService } from "../video-time-tooltip-element/video-time-tooltip-element.service";
 
 @Injectable({
   providedIn: 'root',
 })
 export class VideoTimeTooltipService extends WatchVideoElementReady {
-  private time: WritableSignal<string> = signal<string>('00:00');
-  private display: WritableSignal<string> = signal<string>('block');
-  private leftPosition: WritableSignal<number> = signal<number>(0);
-
   constructor(
       protected override videoService: VideoService,
-      private datePipe: DatePipe
+      private datePipe: DatePipe,
+      private videoTimeTooltipViewService: VideoTimeTooltipViewService,
+      private videoTimeTooltipPositionService: VideoTimeTooltipPositionService,
+      private videoTimeTooltipElementService: VideoTimeTooltipElementService,
   ) {
     super(videoService);
   }
 
-  public watchTime(): Signal<string> {
-    return this.time.asReadonly();
+  public update(eventClientX: number, eventOffsetX: number, progressBarWrapper: HTMLDivElement): void {
+    this.updateTime(eventOffsetX, progressBarWrapper);
+    this.updatedPosition(eventClientX, progressBarWrapper);
   }
 
-  public updatePosition(event: MouseEvent): void {
+  private updateTime(eventOffsetX: number, progressBarWrapper: HTMLDivElement): void {
     if (this.videoElement) {
-      const progressBarWrapper = event.currentTarget as HTMLElement;
-      const clickPosition = event.offsetX;
       const containerWidth = progressBarWrapper.clientWidth;
-      const clickPositionPercent = (clickPosition / containerWidth);
+      const clickPositionPercent = (eventOffsetX / containerWidth);
       const currentTimeInMilliseconds = clickPositionPercent * this.videoElement.duration * 1000;
       const transformedTime = this.datePipe.transform(currentTimeInMilliseconds, 'mm:ss');
-      this.setLeftPosition(clickPositionPercent * 100);
-      this.time.set(transformedTime || '00:00');
+      this.videoTimeTooltipViewService.set(transformedTime || '00:00');
     }
   }
 
-  public setLeftPosition(value: number): void {
-    this.leftPosition.set(value);
+  private updatedPosition(eventClientX: number, progressBarWrapper: HTMLDivElement): void {
+    if (this.videoElement) {
+      const rect = progressBarWrapper.getBoundingClientRect();
+      const mousePosition = eventClientX - rect.left;
+      const progressBarWrapperWidth = rect.width;
+      const tooltipWidth = this.videoTimeTooltipElementService.getWidth();
+      const minPosition = 0;
+      const maxPosition = progressBarWrapperWidth - tooltipWidth;
+      const tooltipPosition = mousePosition - tooltipWidth/2;
+      const position = this.clamp(tooltipPosition, minPosition, maxPosition);
+      this.videoTimeTooltipPositionService.set(position);
+    }
   }
 
-  public watchDisplay(): Signal<string> {
-    return this.display.asReadonly();
+  formatTime(seconds: number): string {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
   }
 
-  public setDisplay(value: boolean): void {
-    this.display.set(value ? 'block' : 'none');
-  }
-
-  public watchLeftPosition(): Signal<number> {
-    return this.leftPosition.asReadonly();
+  private clamp(value: number, min: number, max: number): number {
+    return Math.min(Math.max(value, min), max);
   }
 }
