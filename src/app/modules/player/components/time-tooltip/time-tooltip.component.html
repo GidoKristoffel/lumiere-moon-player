@@ -1,1 +1,8 @@
-<div #timeTooltip class="time-tooltip" [style.display]="display()" [style.left]="'calc(' + position() + '% - ' + (timeTooltip.clientWidth/2) + 'px'">{{ time() }}</div>
+<div #element
+     class="time-tooltip"
+     [style.display]="display()"
+     [style.left.px]="position()">
+    {{ time() }}
+</div>
+
+<!--[style.left]="'calc(' + position() + '% - ' + (element.clientWidth/2) + 'px'"-->

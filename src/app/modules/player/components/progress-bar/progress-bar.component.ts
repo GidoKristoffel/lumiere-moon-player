@@ -4,6 +4,9 @@ import { VideoProgressViewService } from "../../services/video-progress-view/vid
 import { VideoProgressDragService } from "../../services/video-progress-drag/video-progress-drag.service";
 import { VideoProgressBarHoverService } from "../../services/video-progress-bar-hover/video-progress-bar-hover.service";
 import { VideoTimeTooltipService } from "../../services/video-time-tooltip/video-time-tooltip.service";
+import {
+  VideoTimeTooltipDisplayService
+} from "../../services/video-time-tooltip-display/video-time-tooltip-display.service";
 
 @Component({
   selector: 'lmp-progress-bar',
@@ -24,7 +27,8 @@ export class ProgressBarComponent implements AfterViewInit {
       private videoProgressViewService: VideoProgressViewService,
       private videoProgressDragService: VideoProgressDragService,
       private videoProgressBarHoverService: VideoProgressBarHoverService,
-      private videoTimeTooltipService: VideoTimeTooltipService
+      private videoTimeTooltipService: VideoTimeTooltipService,
+      private videoTimeTooltipDisplayService: VideoTimeTooltipDisplayService
   ) {}
 
   ngAfterViewInit() {
@@ -40,15 +44,26 @@ export class ProgressBarComponent implements AfterViewInit {
   }
 
   public moving(event: MouseEvent): void {
-    this.videoProgressBarHoverService.update(event);
-    this.videoTimeTooltipService.updatePosition(event);
+    this.videoProgressBarHoverService.update(event.offsetX, this.progressBarWrapper.nativeElement);
+    this.videoTimeTooltipService.update(event.clientX, event.offsetX, this.progressBarWrapper.nativeElement);
+  }
+
+  public notMoving(event: MouseEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const parentRect = this.progressBarWrapper.nativeElement.getBoundingClientRect();
+    const offsetX = event.clientX - parentRect.left;
+
+    this.videoProgressBarHoverService.update(event.offsetX, this.progressBarWrapper.nativeElement);
+    this.videoTimeTooltipService.update(event.clientX, offsetX, this.progressBarWrapper.nativeElement);
   }
 
   public onMouseEnter(): void {
-    this.videoTimeTooltipService.setDisplay(true);
+    this.videoTimeTooltipDisplayService.set(true);
   }
 
   public onMouseLeave(): void {
-    this.videoTimeTooltipService.setDisplay(false);
+    this.videoTimeTooltipDisplayService.set(false);
   }
 }

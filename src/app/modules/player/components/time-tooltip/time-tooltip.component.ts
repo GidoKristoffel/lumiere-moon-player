@@ -1,6 +1,15 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { DatePipe, NgStyle } from "@angular/common";
-import { VideoTimeTooltipService } from "../../services/video-time-tooltip/video-time-tooltip.service";
+import {
+  VideoTimeTooltipDisplayService
+} from "../../services/video-time-tooltip-display/video-time-tooltip-display.service";
+import { VideoTimeTooltipViewService } from "../../services/video-time-tooltip-view/video-time-tooltip-view.service";
+import {
+  VideoTimeTooltipPositionService
+} from "../../services/video-time-tooltip-position/video-time-tooltip-position.service";
+import {
+  VideoTimeTooltipElementService
+} from "../../services/video-time-tooltip-element/video-time-tooltip-element.service";
 
 @Component({
   selector: 'lmp-time-tooltip',
@@ -12,12 +21,21 @@ import { VideoTimeTooltipService } from "../../services/video-time-tooltip/video
   templateUrl: './time-tooltip.component.html',
   styleUrl: './time-tooltip.component.scss'
 })
-export class TimeTooltipComponent {
-  @ViewChild('timeTooltip') timeTooltip!: ElementRef<HTMLDivElement>;
+export class TimeTooltipComponent implements AfterViewInit {
+  @ViewChild('element') element!: ElementRef<HTMLDivElement>;
 
-  constructor(private videoTimeTooltipService: VideoTimeTooltipService) {}
+  constructor(
+      private videoTimeTooltipDisplayService: VideoTimeTooltipDisplayService,
+      private videoTimeTooltipViewService: VideoTimeTooltipViewService,
+      private videoTimeTooltipPositionService: VideoTimeTooltipPositionService,
+      private videoTimeTooltipElementService: VideoTimeTooltipElementService
+  ) {}
 
-  time = this.videoTimeTooltipService.watchTime();
-  display = this.videoTimeTooltipService.watchDisplay();
-  position = this.videoTimeTooltipService.watchLeftPosition();
+  ngAfterViewInit(): void {
+    this.videoTimeTooltipElementService.init(this.element);
+  }
+
+  public time = this.videoTimeTooltipViewService.watch();
+  public display = this.videoTimeTooltipDisplayService.watch();
+  public position = this.videoTimeTooltipPositionService.watch();
 }
