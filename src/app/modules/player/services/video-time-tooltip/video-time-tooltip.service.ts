@@ -28,7 +28,7 @@ export class VideoTimeTooltipService extends WatchVideoElementReady {
   private updateTime(eventOffsetX: number, progressBarWrapper: HTMLDivElement): void {
     if (this.videoElement) {
       const containerWidth = progressBarWrapper.clientWidth;
-      const clickPositionPercent = (eventOffsetX / containerWidth);
+      const clickPositionPercent = eventOffsetX > 0 ? (eventOffsetX / containerWidth) : 0;
       const currentTimeInMilliseconds = clickPositionPercent * this.videoElement.duration * 1000;
       const transformedTime = this.datePipe.transform(currentTimeInMilliseconds, 'mm:ss');
       this.videoTimeTooltipViewService.set(transformedTime || '00:00');
