@@ -1,5 +1,5 @@
 :host {
-  position: relative;
+  position: absolute;
   margin: 0 10px;
   border: 1px solid unset;
 }
@@ -7,7 +7,7 @@
 .time-tooltip {
   position: absolute;
   background-color: rgba(0, 0, 0, 0.75);
-  color: #fff;
+  color: #e7e8e9;
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 12px;
@@ -15,4 +15,7 @@
   pointer-events: none;
   transform: translateY(-100%);
   display: none;
+  border: 1px solid #383939;
+  background-color: #262626;
+  top: -4px;
 }
