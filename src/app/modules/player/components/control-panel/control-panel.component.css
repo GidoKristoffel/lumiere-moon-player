@@ -1,5 +1,6 @@
 :host {
     flex-direction: column;
+    padding-bottom: 8px;
 }
 
 :host, .row {

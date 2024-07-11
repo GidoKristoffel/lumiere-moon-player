@@ -1,0 +1,11 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+video {
+    background-color: #000;
+    flex: 1;
+    height: 0;
+}
