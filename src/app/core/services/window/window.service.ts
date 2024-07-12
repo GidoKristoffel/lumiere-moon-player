@@ -16,6 +16,12 @@ export class WindowService {
     appWindow.setFullscreen(fullscreen).then();
   }
 
+  public toggleFullscreen(): void {
+    appWindow.isFullscreen().then((isFullscreen) => {
+      this.setFullscreen(!isFullscreen);
+    });
+  }
+
   public close(): void {
     appWindow.close().then();
   }
