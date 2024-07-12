@@ -7,9 +7,19 @@ fn greet(name: &str) -> String {
     format!("Hello, {}! You've been greeted from Rust!", name)
 }
 
+#[tauri::command]
+fn is_fullscreen(window: tauri::Window) -> bool {
+  window.is_fullscreen().unwrap()
+}
+
+#[tauri::command]
+fn toggle_fullscreen(window: tauri::Window) {
+  window.set_fullscreen(!window.is_fullscreen().unwrap()).unwrap();
+}
+
 fn main() {
     tauri::Builder::default()
-        .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![greet, is_fullscreen, toggle_fullscreen])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
 }
