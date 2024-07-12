@@ -18,24 +18,38 @@ export class IconToggleBtnComponent implements OnChanges {
   @Input() enabledIcon: string = '';
   @Input() disabledIcon: string = '';
   @Input() iconSize: string = '';
+  @Input() defaultStatus: boolean = false;
   @Output() onClick: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   public currentIcon!: string;
+  private status: boolean = false;
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['disabledIcon'] && changes['disabledIcon'].firstChange) {
-      this.currentIcon = changes['disabledIcon'].currentValue;
+    console.log(changes);
+    if (changes['defaultStatus'] && changes['defaultStatus'].firstChange) {
+      this.status = changes['defaultStatus'].currentValue;
+    }
+    if (changes['enabledIcon']) {
+      if (this.status) {
+        this.currentIcon = changes['enabledIcon'].currentValue;
+      }
+    }
+    if (changes['disabledIcon']) {
+      if (!this.status) {
+        this.currentIcon = changes['disabledIcon'].currentValue;
+      }
     }
   }
 
   public onEmit(): void {
     this.toggle();
-    this.onClick.emit(this.currentIcon === this.enabledIcon);
+    this.onClick.emit(this.status);
   }
 
   private toggle(): void {
     if (this.currentIcon) {
-      this.currentIcon = this.currentIcon === this.enabledIcon ? this.disabledIcon : this.enabledIcon;
+      this.status = !this.status;
+      this.currentIcon = this.status ? this.enabledIcon : this.disabledIcon;
     }
   }
 }
