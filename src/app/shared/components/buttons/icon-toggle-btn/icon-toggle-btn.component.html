@@ -2,6 +2,6 @@
         (click)="onEmit()"
         [style.width.px]="btnSize"
         [style.height.px]="btnSize"
-        [inlineSVG]="currentIcon"
+        [inlineSVG]="status ? enabledIcon : disabledIcon"
         [setSVGAttributes]="{width: iconSize, height: iconSize}">
 </button>
