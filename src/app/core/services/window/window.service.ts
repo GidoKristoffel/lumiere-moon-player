@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { appWindow } from '@tauri-apps/api/window';
+import { FullscreenWindowService } from "../fullscreen-window/fullscreen-window.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class WindowService {
 
-  constructor() { }
+  constructor(private fullscreenWindowService: FullscreenWindowService) { }
 
   public minimize(): void {
     appWindow.minimize().then();
@@ -18,7 +19,7 @@ export class WindowService {
 
   public toggleFullscreen(): void {
     appWindow.isFullscreen().then((isFullscreen) => {
-      this.setFullscreen(!isFullscreen);
+      this.fullscreenWindowService.set(!isFullscreen);
     });
   }
 

@@ -7,6 +7,7 @@ import {
 } from "../buttons/icon-toggle-btn/icon-toggle-btn.component";
 import { DragRegionDirective } from "../../directives/drag-region/drag-region.directive";
 import { appWindow } from "@tauri-apps/api/window";
+import { FullscreenWindowService } from "../../../core/services/fullscreen-window/fullscreen-window.service";
 
 @Component({
   selector: 'lmp-title-bar',
@@ -22,9 +23,10 @@ import { appWindow } from "@tauri-apps/api/window";
   styleUrl: './title-bar.component.scss'
 })
 export class TitleBarComponent implements OnInit {
+  public fullscreenStatus = this.fullscreenWindowService.watch();
   public defaultFullscreenStatus!: boolean;
 
-  constructor(private windowService: WindowService) {}
+  constructor(private windowService: WindowService, private fullscreenWindowService: FullscreenWindowService) {}
 
   ngOnInit() {
     this.initDefaultFullscreenStatus();
@@ -48,7 +50,6 @@ export class TitleBarComponent implements OnInit {
 
   private initDefaultFullscreenStatus(): void {
     appWindow.isFullscreen().then(isFullscreen => {
-      console.log('isFullscreen: ', isFullscreen);
       this.defaultFullscreenStatus = isFullscreen;
     });
   }
