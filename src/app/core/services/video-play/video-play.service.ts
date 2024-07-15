@@ -1,15 +1,34 @@
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
+import { VideoService } from "../video/video.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class VideoPlayService {
   private playing: WritableSignal<boolean> = signal<boolean>(false);
-  private videoElement: HTMLVideoElement | undefined = undefined;
 
-  constructor() { }
+  constructor(
+      private videoService: VideoService
+  ) { }
 
-  init(videoElement: HTMLVideoElement): void {
-    this.videoElement = videoElement;
+  public watch(): Signal<boolean> {
+    return this.playing.asReadonly();
+  }
+
+  public set(playing: boolean): void {
+    this.playing.set(playing);
+    this.toggle();
+  }
+
+  private toggle(): void {
+    const videoElement = this.videoService.getElement();
+
+    if (videoElement) {
+      if (this.playing()) {
+        videoElement.play().then();
+      } else {
+        videoElement.pause();
+      }
+    }
   }
 }
