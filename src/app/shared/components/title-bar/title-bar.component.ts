@@ -36,15 +36,15 @@ export class TitleBarComponent implements OnInit {
     this.windowService.minimize();
   }
 
-  public fullscreenWindow(fullscreen: boolean): void {
-    this.windowService.setFullscreen(fullscreen);
+  public fullscreenWindow(): void {
+    this.windowService.toggleFullscreen();
   }
 
   public closeWindow(): void {
     this.windowService.close();
   }
 
-  public dbFullscreenWindow(): void {
+  public dblFullscreenWindow(): void {
     this.windowService.toggleFullscreen();
   }
 
