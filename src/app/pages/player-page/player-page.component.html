@@ -1,6 +1,6 @@
 <div class="main">
     <lmp-title-bar></lmp-title-bar>
-    <video #videoPlayer *ngIf="videoURL" (timeupdate)="updateProgressBar()">
+    <video #videoPlayer *ngIf="videoURL" (timeupdate)="updateProgressBar()" (click)="toggleVideoPlaying()">
         <source [src]="videoURL" type="video/mp4">
         Your browser does not support the video tag.
     </video>

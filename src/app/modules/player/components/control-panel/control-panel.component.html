@@ -6,7 +6,8 @@
             iconSize="27"
             enabledIcon="assets/images/pause.svg"
             disabledIcon="assets/images/play.svg"
-            (onClick)="togglePlayVideo($event)"
+            [status]="playingStatus()"
+            (onClick)="togglePlayVideo()"
     ></lmp-icon-toggle-btn>
     <lmp-time-display [totalTime]="totalDurationInSeconds()" [currentTime]="currentPlaybackTimeInSeconds()"></lmp-time-display>
 </div>
