@@ -7,14 +7,18 @@ import { FullscreenWindowService } from "../fullscreen-window/fullscreen-window.
 })
 export class WindowService {
 
-  constructor(private fullscreenWindowService: FullscreenWindowService) { }
+  constructor(
+      private fullscreenWindowService: FullscreenWindowService
+  ) {}
 
   public minimize(): void {
     appWindow.minimize().then();
   }
 
   public setFullscreen(fullscreen: boolean): void {
-    appWindow.setFullscreen(fullscreen).then();
+    appWindow.setFullscreen(fullscreen).then(() => {
+      this.fullscreenWindowService.set(fullscreen);
+    });
   }
 
   public toggleFullscreen(): void {
