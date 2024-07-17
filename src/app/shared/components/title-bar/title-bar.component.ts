@@ -22,15 +22,13 @@ import { FullscreenWindowService } from "../../../core/services/fullscreen-windo
   templateUrl: './title-bar.component.html',
   styleUrl: './title-bar.component.scss'
 })
-export class TitleBarComponent implements OnInit {
+export class TitleBarComponent {
   public fullscreenStatus = this.fullscreenWindowService.watch();
-  public defaultFullscreenStatus!: boolean;
 
-  constructor(private windowService: WindowService, private fullscreenWindowService: FullscreenWindowService) {}
-
-  ngOnInit() {
-    this.initDefaultFullscreenStatus();
-  }
+  constructor(
+      private windowService: WindowService,
+      private fullscreenWindowService: FullscreenWindowService
+  ) {}
 
   public minimizeWindow(): void {
     this.windowService.minimize();
@@ -46,11 +44,5 @@ export class TitleBarComponent implements OnInit {
 
   public dblFullscreenWindow(): void {
     this.windowService.toggleFullscreen();
-  }
-
-  private initDefaultFullscreenStatus(): void {
-    appWindow.isFullscreen().then(isFullscreen => {
-      this.defaultFullscreenStatus = isFullscreen;
-    });
   }
 }
