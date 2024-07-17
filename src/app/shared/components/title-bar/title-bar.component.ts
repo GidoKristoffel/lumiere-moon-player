@@ -1,4 +1,4 @@
-import { Component, EventEmitter, HostListener, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NgIf, NgOptimizedImage } from "@angular/common";
 import { IconBtnComponent } from "../buttons/icon-btn/icon-btn.component";
 import { WindowService } from "../../../core/services/window/window.service";
@@ -6,7 +6,6 @@ import {
   IconToggleBtnComponent
 } from "../buttons/icon-toggle-btn/icon-toggle-btn.component";
 import { DragRegionDirective } from "../../directives/drag-region/drag-region.directive";
-import { appWindow } from "@tauri-apps/api/window";
 import { FullscreenWindowService } from "../../../core/services/fullscreen-window/fullscreen-window.service";
 
 @Component({
