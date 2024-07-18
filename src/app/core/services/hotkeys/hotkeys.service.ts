@@ -1,6 +1,5 @@
 import { Injectable, OnDestroy, Renderer2, RendererFactory2 } from '@angular/core';
 import { WindowService } from "../window/window.service";
-import { FullscreenWindowService } from "../fullscreen-window/fullscreen-window.service";
 
 @Injectable({
   providedIn: 'root'
