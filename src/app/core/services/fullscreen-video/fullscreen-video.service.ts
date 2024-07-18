@@ -1,9 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FullscreenVideoService {
+  private isFullScreen: WritableSignal<boolean> = signal<boolean>(false);
 
-  constructor() { }
+  public watch(): Signal<boolean> {
+    return this.isFullScreen.asReadonly();
+  }
+
+  public set(fullscreen: boolean): void {
+    this.isFullScreen.set(fullscreen);
+  }
 }
