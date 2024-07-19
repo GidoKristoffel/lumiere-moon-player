@@ -13,4 +13,8 @@ export class VideoPlayingStatusService {
   public set(status: boolean): void {
     this.status.set(status);
   }
+
+  public toggle(): void {
+    this.status.set(!this.status());
+  }
 }
