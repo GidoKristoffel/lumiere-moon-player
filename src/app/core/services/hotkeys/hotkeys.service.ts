@@ -1,6 +1,7 @@
 import { Injectable, OnDestroy, Renderer2, RendererFactory2 } from '@angular/core';
 import { WindowService } from "../window/window.service";
 import { VideoPlayingStatusService } from "../video-playing-status/video-playing-status.service";
+import { VideoPlayingService } from "../../../modules/player/services/video-playing/video-playing.service";
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class HotkeysService implements OnDestroy {
   constructor(
       private rendererFactory: RendererFactory2,
       private windowService: WindowService,
-      private videoPlayingStatusService: VideoPlayingStatusService
+      private videoPlayingService: VideoPlayingService
   ) {
     this.renderer = this.rendererFactory.createRenderer(null, null);
   }
@@ -24,8 +25,7 @@ export class HotkeysService implements OnDestroy {
       this.windowService.setFullscreen(false);
     });
     this.spaceListener = this.renderer.listen('document', 'keydown.Space', () => {
-      console.log('keydown.Space');
-      this.videoPlayingStatusService.toggle();
+      this.videoPlayingService.toggle();
     });
   }
 
