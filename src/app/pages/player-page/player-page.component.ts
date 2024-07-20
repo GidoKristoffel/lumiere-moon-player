@@ -5,6 +5,8 @@ import { NgIf } from "@angular/common";
 import { VideoService } from "../../core/services/video/video.service";
 import { VideoProgressBarService } from "../../modules/player/services/video-progress-bar/video-progress-bar.service";
 import { VideoPlayingService } from "../../modules/player/services/video-playing/video-playing.service";
+import { FullscreenWindowService } from "../../core/services/fullscreen-window/fullscreen-window.service";
+import { FullscreenVideoService } from "../../core/services/fullscreen-video/fullscreen-video.service";
 
 
 @Component({
@@ -25,7 +27,8 @@ export class PlayerPageComponent implements OnInit, AfterViewInit  {
   constructor(
       private videoService: VideoService,
       private videoProgressBarService: VideoProgressBarService,
-      private videoPlayingService: VideoPlayingService
+      private videoPlayingService: VideoPlayingService,
+      private fullscreenVideoService: FullscreenVideoService
   ) {}
 
   ngOnInit(): void {
@@ -42,5 +45,9 @@ export class PlayerPageComponent implements OnInit, AfterViewInit  {
 
   public toggleVideoPlaying(): void {
     this.videoPlayingService.toggle();
+  }
+
+  public toggleFullscreen(): void {
+    this.fullscreenVideoService.toggle();
   }
 }
