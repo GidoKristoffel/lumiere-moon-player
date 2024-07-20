@@ -10,4 +10,10 @@
             (onClick)="togglePlayVideo()"
     ></lmp-icon-toggle-btn>
     <lmp-time-display [totalTime]="totalDurationInSeconds()" [currentTime]="currentPlaybackTimeInSeconds()"></lmp-time-display>
+    <lmp-icon-toggle-btn btnSize="38"
+                         iconSize="27"
+                         enabledIcon=""
+                         disabledIcon=""
+                         (onClick)="toggleFullscreen()"
+    ></lmp-icon-toggle-btn>
 </div>
