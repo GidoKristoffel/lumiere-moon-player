@@ -13,4 +13,8 @@ export class FullscreenVideoService {
   public set(fullscreen: boolean): void {
     this.isFullScreen.set(fullscreen);
   }
+
+  public toggle(): void {
+    this.set(!this.isFullScreen());
+  }
 }
