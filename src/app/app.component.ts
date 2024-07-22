@@ -5,6 +5,7 @@ import { ControlPanelComponent } from "./modules/player/components/control-panel
 import { TitleBarComponent } from "./shared/components/title-bar/title-bar.component";
 import { FullscreenWindowService } from "./core/services/fullscreen-window/fullscreen-window.service";
 import { HotkeysService } from "./core/services/hotkeys/hotkeys.service";
+import { FullscreenVideoService } from "./core/services/fullscreen-video/fullscreen-video.service";
 
 @Component({
   selector: 'app-root',
@@ -16,9 +17,11 @@ import { HotkeysService } from "./core/services/hotkeys/hotkeys.service";
 export class AppComponent {
   constructor(
       private fullscreenWindowService: FullscreenWindowService,
-      private hotkeysService: HotkeysService
+      private hotkeysService: HotkeysService,
+      private fullscreenVideoService: FullscreenVideoService,
   ) {
     this.fullscreenWindowService.init();
     this.hotkeysService.init();
+    this.fullscreenVideoService.init();
   }
 }

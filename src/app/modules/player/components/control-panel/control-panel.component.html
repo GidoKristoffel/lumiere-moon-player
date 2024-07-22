@@ -14,6 +14,7 @@
                          iconSize="27"
                          enabledIcon="assets/images/fullscreen.svg"
                          disabledIcon="assets/images/fullscreen-exit.svg"
+                         [status]="fullscreenStatus()"
                          (onClick)="toggleFullscreen()"
     ></lmp-icon-toggle-btn>
 </div>

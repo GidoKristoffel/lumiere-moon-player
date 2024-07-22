@@ -26,6 +26,7 @@ export class ControlPanelComponent {
   public totalDurationInSeconds = this.videoTimeService.totalDuration;
   public currentPlaybackTimeInSeconds = this.videoTimeService.currentPlaybackTime;
   public playingStatus: Signal<boolean> = this.videoPlayingStatusService.watch();
+  public fullscreenStatus: Signal<boolean> = this.fullscreenVideoService.watch();
 
   constructor(
       private videoPlayingService: VideoPlayingService,
