@@ -10,11 +10,17 @@ export class StylesService {
     this.renderer = rendererFactory.createRenderer(null, null);
   }
 
-  public setBodyStyle(property: string, value: string) {
-    this.renderer.setStyle(document.body, property, value);
+  setByTagName(tagName: string, property: string, value: string) {
+    const elements = document.getElementsByTagName(tagName);
+    for (let i = 0; i < elements.length; i++) {
+      this.renderer.setStyle(elements[i], property, value);
+    }
   }
 
-  public removeBodyStyle(property: string) {
-    this.renderer.removeStyle(document.body, property);
+  removeByTagName(tagName: string, property: string) {
+    const elements = document.getElementsByTagName(tagName);
+    for (let i = 0; i < elements.length; i++) {
+      this.renderer.removeStyle(elements[i], property);
+    }
   }
 }
