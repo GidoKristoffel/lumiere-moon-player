@@ -1,30 +1,19 @@
-import { Injectable, Signal, signal, WritableSignal } from '@angular/core';
-import { LocalStorageService } from "../local-storage/local-storage.service";
+import { Injectable } from '@angular/core';
+import { StylesService } from "../styles/styles.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class FullscreenVideoService {
-  private isFullScreen: WritableSignal<boolean> = signal<boolean>(false);
-
   constructor(
-      private localStorageService: LocalStorageService
+      private styleService: StylesService
   ) {}
 
-  public init(): void {
-    this.isFullScreen.set(this.localStorageService.get('fullscreen'));
+  public on(): void {
+    this.styleService.setBodyStyle('border-width', '0');
   }
 
-  public watch(): Signal<boolean> {
-    return this.isFullScreen.asReadonly();
-  }
-
-  public set(fullscreen: boolean): void {
-    this.isFullScreen.set(fullscreen);
-    this.localStorageService.set('fullscreen', fullscreen);
-  }
-
-  public toggle(): void {
-    this.set(!this.isFullScreen());
+  public off(): void {
+    this.styleService.setBodyStyle('border-width', '4px');
   }
 }

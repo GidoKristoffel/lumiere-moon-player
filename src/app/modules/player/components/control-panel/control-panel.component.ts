@@ -9,6 +9,9 @@ import { VideoTimeService } from "../../services/video-time/video-time.service";
 import { TimeTooltipComponent } from "../time-tooltip/time-tooltip.component";
 import { VideoPlayingStatusService } from "../../../../core/services/video-playing-status/video-playing-status.service";
 import { FullscreenVideoService } from "../../../../core/services/fullscreen-video/fullscreen-video.service";
+import {
+  FullscreenVideoStatusService
+} from "../../../../core/services/fullscreen-video-status/fullscreen-video-status.service";
 
 @Component({
   selector: 'lmp-control-panel',
@@ -26,13 +29,13 @@ export class ControlPanelComponent {
   public totalDurationInSeconds = this.videoTimeService.totalDuration;
   public currentPlaybackTimeInSeconds = this.videoTimeService.currentPlaybackTime;
   public playingStatus: Signal<boolean> = this.videoPlayingStatusService.watch();
-  public fullscreenStatus: Signal<boolean> = this.fullscreenVideoService.watch();
+  public fullscreenStatus: Signal<boolean> = this.fullscreenVideoStatusService.watch();
 
   constructor(
       private videoPlayingService: VideoPlayingService,
       private videoTimeService: VideoTimeService,
       private videoPlayingStatusService: VideoPlayingStatusService,
-      private fullscreenVideoService: FullscreenVideoService
+      private fullscreenVideoStatusService: FullscreenVideoStatusService
   ) {}
 
   public togglePlayVideo(): void {
@@ -40,6 +43,6 @@ export class ControlPanelComponent {
   }
 
   public toggleFullscreen(): void {
-    this.fullscreenVideoService.toggle();
+    this.fullscreenVideoStatusService.toggle();
   }
 }
