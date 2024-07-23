@@ -6,6 +6,7 @@ import { TitleBarComponent } from "./shared/components/title-bar/title-bar.compo
 import { FullscreenWindowService } from "./core/services/fullscreen-window/fullscreen-window.service";
 import { HotkeysService } from "./core/services/hotkeys/hotkeys.service";
 import { FullscreenVideoService } from "./core/services/fullscreen-video/fullscreen-video.service";
+import { FullscreenVideoStatusService } from "./core/services/fullscreen-video-status/fullscreen-video-status.service";
 
 @Component({
   selector: 'app-root',
@@ -18,10 +19,10 @@ export class AppComponent {
   constructor(
       private fullscreenWindowService: FullscreenWindowService,
       private hotkeysService: HotkeysService,
-      private fullscreenVideoService: FullscreenVideoService,
+      private fullscreenVideoStatusService: FullscreenVideoStatusService,
   ) {
     this.fullscreenWindowService.init();
     this.hotkeysService.init();
-    this.fullscreenVideoService.init();
+    this.fullscreenVideoStatusService.init();
   }
 }
