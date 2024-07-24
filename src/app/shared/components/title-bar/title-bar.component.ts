@@ -8,6 +8,7 @@ import {
 import {
   MaximizedWindowStatusService
 } from "../../../core/services/maximized-window-status/maximized-window-status.service";
+import { WindowDragRegionDirective } from "../../directives/window-drag-region/window-drag-region.directive";
 
 @Component({
   selector: 'lmp-title-bar',
@@ -16,7 +17,8 @@ import {
     NgOptimizedImage,
     IconBtnComponent,
     IconToggleBtnComponent,
-    NgIf
+    NgIf,
+    WindowDragRegionDirective
   ],
   templateUrl: './title-bar.component.html',
   styleUrl: './title-bar.component.scss'
@@ -39,13 +41,5 @@ export class TitleBarComponent {
 
   public closeWindow(): void {
     this.windowService.close();
-  }
-
-  public dblFullscreenWindow(): void {
-    this.maximizedWindowStatusService.update();
-  }
-
-  public drag(): void {
-    this.windowService.startDragging();
   }
 }
