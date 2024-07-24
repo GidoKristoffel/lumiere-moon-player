@@ -5,8 +5,9 @@ import { WindowService } from "../../../core/services/window/window.service";
 import {
   IconToggleBtnComponent
 } from "../buttons/icon-toggle-btn/icon-toggle-btn.component";
-import { DragRegionDirective } from "../../directives/drag-region/drag-region.directive";
-import { FullscreenWindowService } from "../../../core/services/fullscreen-window/fullscreen-window.service";
+import {
+  MaximizedWindowStatusService
+} from "../../../core/services/maximized-window-status/maximized-window-status.service";
 
 @Component({
   selector: 'lmp-title-bar',
@@ -15,26 +16,25 @@ import { FullscreenWindowService } from "../../../core/services/fullscreen-windo
     NgOptimizedImage,
     IconBtnComponent,
     IconToggleBtnComponent,
-    DragRegionDirective,
     NgIf
   ],
   templateUrl: './title-bar.component.html',
   styleUrl: './title-bar.component.scss'
 })
 export class TitleBarComponent {
-  public fullscreenStatus = this.fullscreenWindowService.watch();
+  public fullscreenStatus = this.maximizedWindowStatusService.watch();
 
   constructor(
       private windowService: WindowService,
-      private fullscreenWindowService: FullscreenWindowService
+      private maximizedWindowStatusService: MaximizedWindowStatusService
   ) {}
 
   public minimizeWindow(): void {
     this.windowService.minimize();
   }
 
-  public fullscreenWindow(): void {
-    this.windowService.toggleFullscreen();
+  public toggleMaximize(): void {
+    this.windowService.toggleMaximize();
   }
 
   public closeWindow(): void {
@@ -42,6 +42,10 @@ export class TitleBarComponent {
   }
 
   public dblFullscreenWindow(): void {
-    this.windowService.toggleFullscreen();
+    this.maximizedWindowStatusService.update();
+  }
+
+  public drag(): void {
+    this.windowService.startDragging();
   }
 }

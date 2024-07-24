@@ -18,7 +18,8 @@
       },
       "window": {
         "minimize": true,
-        "setFullscreen": true,
+        "maximize": true,
+        "unmaximize": true,
         "close": true,
         "startDragging": true
       },
