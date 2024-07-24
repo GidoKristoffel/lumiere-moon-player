@@ -22,7 +22,7 @@ export class HotkeysService implements OnDestroy {
 
   public init(): void {
     this.escapeListener = this.renderer.listen('document', 'keydown.escape', () => {
-      this.windowService.setFullscreen(false);
+      this.windowService.setMaximize(false);
     });
     this.spaceListener = this.renderer.listen('document', 'keydown.Space', () => {
       this.videoPlayingService.toggle();

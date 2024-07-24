@@ -1,10 +1,10 @@
-<div class="title-bar" data-tauri-drag-region="true" (dblclick)="dblFullscreenWindow()">
+<div class="title-bar" (mousedown)="drag()" (dblclick)="dblFullscreenWindow()">
     <div class="icon">
         <img ngSrc="../../../../assets/images/logo.png" alt="Lumiere moon player" height="32" width="32">
     </div>
     <div class="btn-container">
         <lmp-icon-btn icon="assets/images/collapse.svg" btnSize="27" iconSize="16" (onClick)="minimizeWindow()"></lmp-icon-btn>
-        <lmp-icon-toggle-btn enabledIcon="assets/images/minimize.svg" disabledIcon="assets/images/maximize.svg" btnSize="27" iconSize="16" [status]="fullscreenStatus()" (onClick)="fullscreenWindow()"></lmp-icon-toggle-btn>
+        <lmp-icon-toggle-btn enabledIcon="assets/images/minimize.svg" disabledIcon="assets/images/maximize.svg" btnSize="27" iconSize="16" [status]="fullscreenStatus()" (onClick)="toggleMaximize()"></lmp-icon-toggle-btn>
         <lmp-icon-btn icon="assets/images/close.svg" btnSize="27" iconSize="16" (onClick)="closeWindow()"></lmp-icon-btn>
     </div>
 </div>

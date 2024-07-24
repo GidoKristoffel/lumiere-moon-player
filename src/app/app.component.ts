@@ -8,6 +8,7 @@ import { HotkeysService } from "./core/services/hotkeys/hotkeys.service";
 import { FullscreenVideoService } from "./core/services/fullscreen-video/fullscreen-video.service";
 import { FullscreenVideoStatusService } from "./core/services/fullscreen-video-status/fullscreen-video-status.service";
 import { NoFocusService } from "./core/services/no-focus/no-focus.service";
+import { MaximizedWindowStatusService } from "./core/services/maximized-window-status/maximized-window-status.service";
 
 @Component({
   selector: 'app-root',
@@ -18,12 +19,14 @@ import { NoFocusService } from "./core/services/no-focus/no-focus.service";
 })
 export class AppComponent {
   constructor(
-      private fullscreenWindowService: FullscreenWindowService,
+      // private fullscreenWindowService: FullscreenWindowService,
       private hotkeysService: HotkeysService,
       private fullscreenVideoStatusService: FullscreenVideoStatusService,
-      private noFocusService: NoFocusService
+      private noFocusService: NoFocusService,
+      private maximizedWindowStatusService: MaximizedWindowStatusService
   ) {
-    this.fullscreenWindowService.init();
+    // this.fullscreenWindowService.init();
+    this.maximizedWindowStatusService.init();
     this.hotkeysService.init();
     this.fullscreenVideoStatusService.init();
     this.noFocusService.init();

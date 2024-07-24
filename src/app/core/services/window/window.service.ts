@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { appWindow } from '@tauri-apps/api/window';
-import { FullscreenWindowService } from "../fullscreen-window/fullscreen-window.service";
+import { MaximizedWindowStatusService } from "../maximized-window-status/maximized-window-status.service";
 
 @Injectable({
   providedIn: 'root'
@@ -8,26 +8,37 @@ import { FullscreenWindowService } from "../fullscreen-window/fullscreen-window.
 export class WindowService {
 
   constructor(
-      private fullscreenWindowService: FullscreenWindowService
+      private maximizedWindowStatusService: MaximizedWindowStatusService
   ) {}
 
   public minimize(): void {
     appWindow.minimize().then();
   }
 
-  public setFullscreen(fullscreen: boolean): void {
-    appWindow.setFullscreen(fullscreen).then(() => {
-      this.fullscreenWindowService.set(fullscreen);
+  public toggleMaximize(): void {
+    appWindow.isMaximized().then((status) => {
+      if (status) {
+        appWindow.unmaximize().then(() => this.maximizedWindowStatusService.set(!status));
+      } else {
+        appWindow.maximize().then(() => this.maximizedWindowStatusService.set(!status));
+      }
     });
   }
 
-  public toggleFullscreen(): void {
-    appWindow.isFullscreen().then((isFullscreen) => {
-      this.fullscreenWindowService.set(!isFullscreen);
-    });
+  public setMaximize(status: boolean): void {
+    console.log('setMaximize');
+    if (status) {
+      appWindow.maximize().then(() => this.maximizedWindowStatusService.set(status));
+    } else {
+      appWindow.unmaximize().then(() => this.maximizedWindowStatusService.set(status));
+    }
   }
 
   public close(): void {
     appWindow.close().then();
+  }
+
+  public startDragging(): void {
+    appWindow.startDragging().then();
   }
 }
