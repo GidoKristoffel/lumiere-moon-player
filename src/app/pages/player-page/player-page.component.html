@@ -4,7 +4,7 @@
         <source [src]="videoURL" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-    <div #controlPanelComponent>
+    <div #controlPanelComponent [class.control-panel__fullscreen-mode]="isFullScreen()">
         <lmp-control-panel></lmp-control-panel>
     </div>
 </div>

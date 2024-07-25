@@ -17,7 +17,11 @@ export class VisibilityControlDirective implements OnChanges {
     if (this.isCondition) {
       this.setVisible(true);
       clearTimeout(this.hideTimeout);
-      this.hideTimeout = setTimeout(() => this.setVisible(false), this.timeUntilExtinction);
+      this.hideTimeout = setTimeout(() => {
+        if (this.isCondition) {
+          this.setVisible(false);
+        }
+      }, this.timeUntilExtinction);
     }
   }
 
