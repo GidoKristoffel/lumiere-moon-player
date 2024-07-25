@@ -21,7 +21,8 @@
         "maximize": true,
         "unmaximize": true,
         "close": true,
-        "startDragging": true
+        "startDragging": true,
+        "setFullscreen": true
       },
       "fs": {
         "all": true
