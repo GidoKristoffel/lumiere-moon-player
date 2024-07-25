@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, Signal, ViewChild } from '@angular/core';
 import { ControlPanelComponent } from "../../modules/player/components/control-panel/control-panel.component";
 import { TitleBarComponent } from "../../shared/components/title-bar/title-bar.component";
 import { NgIf } from "@angular/common";
@@ -8,6 +8,7 @@ import { VideoPlayingService } from "../../modules/player/services/video-playing
 import {
   FullscreenVideoStatusService
 } from "../../core/services/fullscreen-video-status/fullscreen-video-status.service";
+import { VisibilityControlDirective } from "../../shared/directives/visibility-control/visibility-control.directive";
 
 
 @Component({
@@ -16,14 +17,17 @@ import {
   imports: [
     ControlPanelComponent,
     TitleBarComponent,
-    NgIf
+    NgIf,
+    VisibilityControlDirective
   ],
   templateUrl: './player-page.component.html',
   styleUrl: './player-page.component.css'
 })
 export class PlayerPageComponent implements OnInit, AfterViewInit  {
   @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;
+  @ViewChild('controlPanelComponent') controlPanel!: ElementRef<HTMLVideoElement>;
   public videoURL: string = '';
+  public isFullScreen: Signal<boolean> = this.fullscreenVideoStatusService.watch();
 
   constructor(
       private videoService: VideoService,

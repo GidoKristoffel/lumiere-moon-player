@@ -1,8 +1,10 @@
-<div class="main">
+<div class="main" lmpVisibilityControl [displayCondition]="isFullScreen()" [timeUntilExtinction]="2000" [element]="controlPanel">
     <lmp-title-bar></lmp-title-bar>
     <video #videoPlayer *ngIf="videoURL" (timeupdate)="updateProgressBar()" (click)="toggleVideoPlaying()" (dblclick)="toggleFullscreen()">
         <source [src]="videoURL" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-    <lmp-control-panel></lmp-control-panel>
+    <div #controlPanelComponent>
+        <lmp-control-panel></lmp-control-panel>
+    </div>
 </div>
