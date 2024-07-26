@@ -1,6 +1,7 @@
 :host {
     flex-direction: column;
     padding-bottom: 8px;
+    background-color: #051519;
 }
 
 :host, .row {
@@ -10,4 +11,8 @@
 
 .row {
     padding: 0 8px;
+
+    & lmp-icon-toggle-btn:last-child {
+        margin-left: auto;
+    }
 }
