@@ -11,6 +11,7 @@ export class HotkeysService implements OnDestroy {
 
   private escapeListener!: () => void;
   private spaceListener!: () => void;
+  private fListener!: () => void;
 
   constructor(
       private rendererFactory: RendererFactory2,
@@ -25,6 +26,11 @@ export class HotkeysService implements OnDestroy {
     this.escapeListener = this.renderer.listen('document', 'keydown.escape', () => {
       this.windowService.setMaximize(false);
       this.fullscreenVideoStatusService.set(false);
+    });
+    this.fListener = this.renderer.listen('document', 'keydown', (event) => {
+      if (event.key === 'f' || event.key === 'F') {
+        this.fullscreenVideoStatusService.toggle();
+      }
     });
     this.spaceListener = this.renderer.listen('document', 'keydown.Space', () => {
       this.videoPlayingService.toggle();

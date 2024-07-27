@@ -8,7 +8,6 @@ import { VideoPlayingService } from "../../services/video-playing/video-playing.
 import { VideoTimeService } from "../../services/video-time/video-time.service";
 import { TimeTooltipComponent } from "../time-tooltip/time-tooltip.component";
 import { VideoPlayingStatusService } from "../../../../core/services/video-playing-status/video-playing-status.service";
-import { FullscreenVideoService } from "../../../../core/services/fullscreen-video/fullscreen-video.service";
 import {
   FullscreenVideoStatusService
 } from "../../../../core/services/fullscreen-video-status/fullscreen-video-status.service";
