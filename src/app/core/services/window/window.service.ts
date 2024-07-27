@@ -26,7 +26,6 @@ export class WindowService {
   }
 
   public setMaximize(status: boolean): void {
-    console.log('setMaximize');
     if (status) {
       appWindow.maximize().then(() => this.maximizedWindowStatusService.set(status));
     } else {

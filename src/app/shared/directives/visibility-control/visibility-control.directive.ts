@@ -41,9 +41,13 @@ export class VisibilityControlDirective implements OnChanges {
   private setVisible(visible: boolean): void {
     if (this.element) {
       if (visible) {
-        this.renderer.setStyle(this.element.nativeElement, 'display', 'block');
+        // this.renderer.setStyle(this.element.nativeElement, 'display', 'block');
+        this.renderer.setStyle(this.element.nativeElement, 'transition', 'opacity 1s else 1s');
+        this.renderer.setStyle(this.element.nativeElement, 'opacity', '1');
       } else {
-        this.renderer.setStyle(this.element.nativeElement, 'display', 'none');
+        // this.renderer.setStyle(this.element.nativeElement, 'display', 'none');
+        this.renderer.setStyle(this.element.nativeElement, 'transition', 'opacity 1s else 1s');
+        this.renderer.setStyle(this.element.nativeElement, 'opacity', '0');
       }
     }
   }
