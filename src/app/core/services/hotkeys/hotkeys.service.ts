@@ -44,6 +44,9 @@ export class HotkeysService implements OnDestroy {
     if (this.spaceListener) {
       this.spaceListener();
     }
+    if (this.fListener) {
+      this.fListener();
+    }
   }
 
   ngOnDestroy() {
