@@ -10,14 +10,14 @@ export class StylesService {
     this.renderer = rendererFactory.createRenderer(null, null);
   }
 
-  setByTagName(tagName: string, property: string, value: string) {
+  public setByTagName(tagName: string, property: string, value: string) {
     const elements = document.getElementsByTagName(tagName);
     for (let i = 0; i < elements.length; i++) {
       this.renderer.setStyle(elements[i], property, value);
     }
   }
 
-  removeByTagName(tagName: string, property: string) {
+  public removeByTagName(tagName: string, property: string) {
     const elements = document.getElementsByTagName(tagName);
     for (let i = 0; i < elements.length; i++) {
       this.renderer.removeStyle(elements[i], property);
