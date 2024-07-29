@@ -6,9 +6,10 @@ import { VideoService } from "../../core/services/video/video.service";
 import { VideoProgressBarService } from "../../modules/player/services/video-progress-bar/video-progress-bar.service";
 import { VideoPlayingService } from "../../modules/player/services/video-playing/video-playing.service";
 import {
-  FullscreenVideoStatusService
+    FullscreenVideoStatusService
 } from "../../core/services/fullscreen-video-status/fullscreen-video-status.service";
 import { VisibilityControlDirective } from "../../shared/directives/visibility-control/visibility-control.directive";
+import { animate, state, style, transition, trigger } from "@angular/animations";
 
 
 @Component({
@@ -21,7 +22,15 @@ import { VisibilityControlDirective } from "../../shared/directives/visibility-c
     VisibilityControlDirective
   ],
   templateUrl: './player-page.component.html',
-  styleUrl: './player-page.component.css'
+  styleUrl: './player-page.component.css',
+  animations: [
+    trigger('panelAnimation', [
+      state('visible', style({ opacity: 1 })),
+      state('hidden', style({ opacity: 0 })),
+      transition('visible => hidden', [animate('1s')]),
+      transition('hidden => visible', [animate('0.5s')]),
+    ])
+  ]
 })
 export class PlayerPageComponent implements OnInit, AfterViewInit  {
   @ViewChild('videoPlayer') videoPlayer!: ElementRef<HTMLVideoElement>;

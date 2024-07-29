@@ -3,10 +3,12 @@ import { provideRouter } from "@angular/router";
 
 import { routes } from "./app.routes";
 import { DatePipe } from "@angular/common";
+import { provideAnimationsAsync } from "@angular/platform-browser/animations/async";
 
 export const appConfig: ApplicationConfig = {
   providers: [
       provideRouter(routes),
-      DatePipe
+      DatePipe,
+      provideAnimationsAsync()
   ],
 };
