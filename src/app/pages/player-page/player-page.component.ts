@@ -27,8 +27,7 @@ import { animate, state, style, transition, trigger } from "@angular/animations"
     trigger('panelAnimation', [
       state('visible', style({ opacity: 1 })),
       state('hidden', style({ opacity: 0 })),
-      transition('visible => hidden', [animate('1s')]),
-      transition('hidden => visible', [animate('0.5s')]),
+      transition('visible <=> hidden', [animate('1s')]),
     ])
   ]
 })
@@ -37,6 +36,7 @@ export class PlayerPageComponent implements OnInit, AfterViewInit  {
   @ViewChild('controlPanelComponent') controlPanel!: ElementRef<HTMLVideoElement>;
   public videoURL: string = '';
   public isFullScreen: Signal<boolean> = this.fullscreenVideoStatusService.watch();
+  isMoving = false;
 
   constructor(
       private videoService: VideoService,
@@ -51,6 +51,13 @@ export class PlayerPageComponent implements OnInit, AfterViewInit  {
 
   ngAfterViewInit() {
     this.videoService.setElement(this.videoPlayer.nativeElement);
+  }
+
+  onMouseMove() {
+    this.isMoving = true;
+    setTimeout(() => {
+      this.isMoving = false;
+    }, 2000);
   }
 
   public updateProgressBar(): void {
