@@ -25,9 +25,10 @@ import { animate, state, style, transition, trigger } from "@angular/animations"
   styleUrl: './player-page.component.css',
   animations: [
     trigger('panelAnimation', [
-      state('visible', style({ opacity: 1 })),
-      state('hidden', style({ opacity: 0 })),
-      transition('visible <=> hidden', [animate('1s')]),
+      state('visible', style({ opacity: 1, display: "block" })),
+      state('hidden', style({ opacity: 0, display: "none" })),
+      transition('visible => hidden', [animate('0.5s')]),
+      transition('hidden => visible', [animate('0.1s')]),
     ])
   ]
 })
@@ -36,7 +37,9 @@ export class PlayerPageComponent implements OnInit, AfterViewInit  {
   @ViewChild('controlPanelComponent') controlPanel!: ElementRef<HTMLVideoElement>;
   public videoURL: string = '';
   public isFullScreen: Signal<boolean> = this.fullscreenVideoStatusService.watch();
-  isMoving = false;
+  public isMoving = false;
+  private movingTimeout: any;
+  public isMouseOverChild = false;
 
   constructor(
       private videoService: VideoService,
@@ -53,11 +56,20 @@ export class PlayerPageComponent implements OnInit, AfterViewInit  {
     this.videoService.setElement(this.videoPlayer.nativeElement);
   }
 
-  onMouseMove() {
+  public onMouseMove() {
     this.isMoving = true;
-    setTimeout(() => {
+    clearTimeout(this.movingTimeout);
+    this.movingTimeout = setTimeout(() => {
       this.isMoving = false;
     }, 2000);
+  }
+
+  public onMouseEnterChild() {
+    this.isMouseOverChild = true;
+  }
+
+  public onMouseLeaveChild() {
+    this.isMouseOverChild = false;
   }
 
   public updateProgressBar(): void {
