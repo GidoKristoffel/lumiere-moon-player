@@ -24,12 +24,12 @@ import { animate, state, style, transition, trigger } from "@angular/animations"
   templateUrl: './player-page.component.html',
   styleUrl: './player-page.component.css',
   animations: [
-    trigger('panelAnimation', [
-      state('visible', style({ opacity: 1, display: "block" })),
-      state('hidden', style({ opacity: 0, display: "none" })),
-      transition('visible => hidden', [animate('0.5s')]),
-      transition('hidden => visible', [animate('0.1s')]),
-    ])
+    // trigger('panelAnimation', [
+    //   state('visible', style({ opacity: 1, display: "block" })),
+    //   state('hidden', style({ opacity: 0, display: "none" })),
+    //   transition('visible => hidden', [animate('0.5s')]),
+    //   transition('hidden => visible', [animate('0.1s')]),
+    // ])
   ]
 })
 export class PlayerPageComponent implements OnInit, AfterViewInit  {

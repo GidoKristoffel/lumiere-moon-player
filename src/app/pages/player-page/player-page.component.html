@@ -1,5 +1,5 @@
-<!--<div class="main" lmpVisibilityControl [displayCondition]="isFullScreen()" [timeUntilExtinction]="2000" [element]="controlPanel">-->
-<div class="main" (mousemove)="onMouseMove()">
+<div class="main" lmpVisibilityControl [displayCondition]="isFullScreen()" [timeUntilExtinction]="2000" [element]="controlPanel">
+<!--<div class="main" (mousemove)="onMouseMove()">-->
     <lmp-title-bar></lmp-title-bar>
     <video #videoPlayer *ngIf="videoURL" (timeupdate)="updateProgressBar()" (click)="toggleVideoPlaying()" (dblclick)="toggleFullscreen()">
         <source [src]="videoURL" type="video/mp4">
@@ -7,9 +7,6 @@
     </video>
     <div #controlPanelComponent
          [class.control-panel__fullscreen-mode]="isFullScreen()"
-         [@panelAnimation]="(isFullScreen() && !isMoving && !isMouseOverChild) ? 'hidden' : 'visible'"
-         (mouseenter)="onMouseEnterChild()"
-         (mouseleave)="onMouseLeaveChild()"
     >
         <lmp-control-panel></lmp-control-panel>
     </div>
