@@ -22,8 +22,8 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
   private isCondition: boolean = true;
   private hideTimeout: any;
   private player: AnimationPlayer | undefined;
-  public isMouseOverChild = false;
   private isVisible: boolean = false;
+  public isMouseOverChild = false;
 
   private stateVisible: AnimationMetadata[] = [
     style({ opacity: 0 }),
@@ -35,7 +35,12 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
     animate('400ms', style({ opacity: 0 })),
   ];
 
-  @HostListener('mousemove', ['$event'])
+  constructor(
+      private builder: AnimationBuilder,
+      private renderer: Renderer2
+  ) {}
+
+  @HostListener('mousemove')
   onMouseMove(): void {
     if (this.isCondition) {
       if (!this.isVisible) {
@@ -44,34 +49,33 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
       clearTimeout(this.hideTimeout);
       if (!this.isMouseOverChild) {
         this.hideTimeout = setTimeout(() => {
-          if (this.isCondition) {
-            if (this.isVisible) {
-              this.setVisible(false);
-            }
+          if (this.isCondition && this.isVisible) {
+            this.setVisible(false);
           }
         }, this.timeUntilExtinction);
       }
     }
   }
 
-  constructor(private builder: AnimationBuilder, private renderer: Renderer2) {}
-
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['displayCondition']) {
       this.isCondition = changes['displayCondition'].currentValue;
-      this.setVisible(!this.isCondition);
+      this.setVisible(this.isCondition);
     }
     if (changes['element'] && changes['element'].currentValue) {
-      this.renderer.listen(changes['element'].currentValue.nativeElement, 'mouseenter', () => this.onMouseEnterChild());
-      this.renderer.listen(changes['element'].currentValue.nativeElement, 'mouseleave', () => this.onMouseLeaveChild());
+      this.addMouseListeners(changes['element'].currentValue.nativeElement);
     }
   }
 
   ngAfterViewInit(): void {
     if (this.element) {
-      this.renderer.listen(this.element, 'mouseenter', () => this.onMouseEnterChild());
-      this.renderer.listen(this.element, 'mouseleave', () => this.onMouseLeaveChild());
+      this.addMouseListeners(this.element.nativeElement);
     }
+  }
+
+  private addMouseListeners(element: HTMLElement): void {
+    this.renderer.listen(element, 'mouseenter', () => this.onMouseEnterChild());
+    this.renderer.listen(element, 'mouseleave', () => this.onMouseLeaveChild());
   }
 
   private setVisible(visible: boolean): void {
@@ -82,17 +86,25 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
       }
 
       const factory = this.builder.build(visible ? this.stateVisible : this.stateHidden);
-      const player = factory.create(this.element.nativeElement);
+      this.player = factory.create(this.element.nativeElement);
 
-      player.play();
+      this.player.play();
     }
   }
 
-  public onMouseEnterChild() {
+  private onMouseEnterChild(): void {
     this.isMouseOverChild = true;
+    clearTimeout(this.hideTimeout);
   }
 
-  public onMouseLeaveChild() {
+  private onMouseLeaveChild(): void {
     this.isMouseOverChild = false;
+    if (this.isCondition) {
+      this.hideTimeout = setTimeout(() => {
+        if (!this.isMouseOverChild) {
+          this.setVisible(false);
+        }
+      }, this.timeUntilExtinction);
+    }
   }
 }
