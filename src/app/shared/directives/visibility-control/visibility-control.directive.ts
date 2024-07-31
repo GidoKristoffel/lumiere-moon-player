@@ -22,8 +22,8 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
   private isCondition: boolean = true;
   private hideTimeout: any;
   private player: AnimationPlayer | undefined;
-  private isVisible: boolean = false;
   public isMouseOverChild = false;
+  private isVisible: boolean = false;
 
   private stateVisible: AnimationMetadata[] = [
     style({ opacity: 0 }),
@@ -35,12 +35,7 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
     animate('400ms', style({ opacity: 0 })),
   ];
 
-  constructor(
-      private builder: AnimationBuilder,
-      private renderer: Renderer2
-  ) {}
-
-  @HostListener('mousemove')
+  @HostListener('mousemove', ['$event'])
   onMouseMove(): void {
     if (this.isCondition) {
       if (!this.isVisible) {
@@ -49,18 +44,25 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
       clearTimeout(this.hideTimeout);
       if (!this.isMouseOverChild) {
         this.hideTimeout = setTimeout(() => {
-          if (this.isCondition && this.isVisible) {
-            this.setVisible(false);
+          if (this.isCondition) {
+            if (this.isVisible) {
+              this.setVisible(false);
+            }
           }
         }, this.timeUntilExtinction);
       }
     }
   }
 
+  constructor(
+      private builder: AnimationBuilder,
+      private renderer: Renderer2
+  ) {}
+
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['displayCondition']) {
       this.isCondition = changes['displayCondition'].currentValue;
-      this.setVisible(this.isCondition);
+      this.setVisible(!this.isCondition);
     }
     if (changes['element'] && changes['element'].currentValue) {
       this.addMouseListeners(changes['element'].currentValue.nativeElement);
@@ -86,25 +88,17 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
       }
 
       const factory = this.builder.build(visible ? this.stateVisible : this.stateHidden);
-      this.player = factory.create(this.element.nativeElement);
+      const player = factory.create(this.element.nativeElement);
 
-      this.player.play();
+      player.play();
     }
   }
 
-  private onMouseEnterChild(): void {
+  public onMouseEnterChild() {
     this.isMouseOverChild = true;
-    clearTimeout(this.hideTimeout);
   }
 
-  private onMouseLeaveChild(): void {
+  public onMouseLeaveChild() {
     this.isMouseOverChild = false;
-    if (this.isCondition) {
-      this.hideTimeout = setTimeout(() => {
-        if (!this.isMouseOverChild) {
-          this.setVisible(false);
-        }
-      }, this.timeUntilExtinction);
-    }
   }
 }
