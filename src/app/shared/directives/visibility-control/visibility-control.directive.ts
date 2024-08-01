@@ -88,9 +88,9 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
       }
 
       const factory = this.builder.build(visible ? this.stateVisible : this.stateHidden);
-      const player = factory.create(this.element.nativeElement);
+      this.player = factory.create(this.element.nativeElement);
 
-      player.play();
+      this.player.play();
     }
   }
 
