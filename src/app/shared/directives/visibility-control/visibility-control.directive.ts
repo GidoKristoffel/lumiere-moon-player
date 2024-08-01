@@ -22,8 +22,8 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
   private isCondition: boolean = true;
   private hideTimeout: any;
   private player: AnimationPlayer | undefined;
-  public isMouseOverChild = false;
   private isVisible: boolean = false;
+  public isMouseOverChild = false;
 
   private stateVisible: AnimationMetadata[] = [
     style({ opacity: 0 }),
@@ -41,13 +41,13 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
       if (!this.isVisible) {
         this.setVisible(true);
       }
+
       clearTimeout(this.hideTimeout);
+
       if (!this.isMouseOverChild) {
         this.hideTimeout = setTimeout(() => {
-          if (this.isCondition) {
-            if (this.isVisible) {
-              this.setVisible(false);
-            }
+          if (this.isCondition && this.isVisible) {
+            this.setVisible(false);
           }
         }, this.timeUntilExtinction);
       }
@@ -75,11 +75,6 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
     }
   }
 
-  private addMouseListeners(element: HTMLElement): void {
-    this.renderer.listen(element, 'mouseenter', () => this.onMouseEnterChild());
-    this.renderer.listen(element, 'mouseleave', () => this.onMouseLeaveChild());
-  }
-
   private setVisible(visible: boolean): void {
     this.isVisible = visible;
     if (this.element) {
@@ -94,11 +89,8 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
     }
   }
 
-  public onMouseEnterChild() {
-    this.isMouseOverChild = true;
-  }
-
-  public onMouseLeaveChild() {
-    this.isMouseOverChild = false;
+  private addMouseListeners(element: HTMLElement): void {
+    this.renderer.listen(element, 'mouseenter', () => this.isMouseOverChild = true);
+    this.renderer.listen(element, 'mouseleave', () => this.isMouseOverChild = false);
   }
 }
