@@ -25,16 +25,6 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
   private isVisible: boolean = false;
   public isMouseOverChild = false;
 
-  private stateVisible: AnimationMetadata[] = [
-    style({ opacity: 0 }),
-    animate('400ms', style({ opacity: 1 })),
-  ];
-
-  private stateHidden: AnimationMetadata[] = [
-    style({ opacity: 1 }),
-    animate('400ms', style({ opacity: 0 })),
-  ];
-
   @HostListener('mousemove', ['$event'])
   onMouseMove(): void {
     if (this.isCondition) {
@@ -82,7 +72,10 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
         this.player.destroy();
       }
 
-      const factory = this.builder.build(visible ? this.stateVisible : this.stateHidden);
+      const factory = this.builder.build([
+        style({ opacity: Number(!visible) }),
+        animate('400ms', style({ opacity: Number(visible) })),
+      ]);
       this.player = factory.create(this.element.nativeElement);
 
       this.player.play();
