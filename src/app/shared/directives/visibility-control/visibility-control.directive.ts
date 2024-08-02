@@ -52,7 +52,7 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['displayCondition']) {
       this.isCondition = changes['displayCondition'].currentValue;
-      this.setVisible(!this.isCondition);
+      this.setVisible(!this.isCondition, 0);
     }
     if (changes['element'] && changes['element'].currentValue) {
       this.addMouseListeners(changes['element'].currentValue.nativeElement);
@@ -65,7 +65,7 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
     }
   }
 
-  private setVisible(visible: boolean): void {
+  private setVisible(visible: boolean, animationTime: number = 400): void {
     this.isVisible = visible;
     if (this.element) {
       if (this.player) {
@@ -74,7 +74,7 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
 
       const factory = this.builder.build([
         style({ opacity: Number(!visible) }),
-        animate('400ms', style({ opacity: Number(visible) })),
+        animate(animationTime, style({ opacity: Number(visible) })),
       ]);
       this.player = factory.create(this.element.nativeElement);
 
