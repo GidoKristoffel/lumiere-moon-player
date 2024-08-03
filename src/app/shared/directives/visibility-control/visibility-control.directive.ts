@@ -22,13 +22,14 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
   private isCondition: boolean = true;
   private hideTimeout: any;
   private player: AnimationPlayer | undefined;
-  private isVisible: boolean = false;
+  private isVisible: boolean = true;
   public isMouseOverChild = false;
 
   @HostListener('mousemove', ['$event'])
   onMouseMove(): void {
     if (this.isCondition) {
       if (!this.isVisible) {
+        console.log('isVisible');
         this.setVisible(true);
       }
 
@@ -52,7 +53,9 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['displayCondition']) {
       this.isCondition = changes['displayCondition'].currentValue;
-      this.setVisible(!this.isCondition, 0);
+      if (!this.isCondition) {
+        this.setVisible(true, 0);
+      }
     }
     if (changes['element'] && changes['element'].currentValue) {
       this.addMouseListeners(changes['element'].currentValue.nativeElement);
