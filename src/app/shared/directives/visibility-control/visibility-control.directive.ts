@@ -22,7 +22,6 @@ export class VisibilityControlDirective implements OnChanges, AfterViewInit {
     @HostListener('mousemove', ['$event']) onMouseMove(): void {
         if (this.isCondition) {
             if (!this.isVisible) {
-                console.log('isVisible');
                 this.setVisible(true);
             }
 
