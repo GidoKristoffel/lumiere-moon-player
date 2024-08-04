@@ -1,0 +1,13 @@
+@import '../../../../shared/styles/constants.scss';
+
+:host {
+  display: flex;
+  gap: 8px;
+  height: min-content;
+
+  & > div {
+    padding: 2px 8px;
+    border-radius: 10px;
+    background-color: $background-time-display;
+  }
+}
