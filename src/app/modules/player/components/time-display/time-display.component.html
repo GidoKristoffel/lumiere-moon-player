@@ -1,6 +1,6 @@
 <div class="current-left">
-    {{ currentTime | date: 'mm:ss' }} / {{ (totalTime - currentTime) | date: 'mm:ss' }}
+    <span title="current">{{ currentTime | date: 'mm:ss' }}</span> / <span title="left">{{ (totalTime - currentTime) | date: 'mm:ss' }}</span>
 </div>
-<div class="total">
+<div class="total" title="total">
     {{ totalTime | date: 'mm:ss' }}
 </div>
