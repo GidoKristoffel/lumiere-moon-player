@@ -4,6 +4,8 @@
   display: flex;
   gap: 8px;
   height: min-content;
+  cursor: default;
+  user-select: none;
 
   & > div {
     padding: 2px 8px;
