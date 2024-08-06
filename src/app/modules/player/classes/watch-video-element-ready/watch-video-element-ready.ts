@@ -2,7 +2,7 @@ import { take } from "rxjs";
 import { VideoService } from "../../../../core/services/video/video.service";
 
 export abstract class WatchVideoElementReady {
-    protected videoElement: HTMLVideoElement | undefined = undefined;
+    videoElement: HTMLVideoElement | undefined = undefined;
 
     protected constructor(
         protected videoService: VideoService
