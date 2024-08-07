@@ -13,9 +13,7 @@ export class FullscreenVideoService {
   public on(): void {
     this.styleService.setByTagName('body', 'border-width', '0');
     this.styleService.setByTagName('lmp-title-bar', 'display', 'none');
-    appWindow.setFullscreen(true).then(() => {
-
-    });
+    appWindow.setFullscreen(true).then();
   }
 
   public off(): void {
