@@ -30,4 +30,45 @@ describe('FullscreenVideoStatusService', () => {
     expect(service).toBeTruthy();
   });
 
+  it('should initialize with status from localStorage', () => {
+    localStorageService.get.and.returnValue(true);
+    service.init();
+    expect(service.watch()()).toBeTrue();
+    expect(localStorageService.get).toHaveBeenCalledWith('fullscreen');
+    expect(fullscreenVideoService.on).toHaveBeenCalled();
+  });
+
+  it('should set status and store it in localStorage', () => {
+    service.set(true);
+    expect(service.watch()()).toBeTrue();
+    expect(localStorageService.set).toHaveBeenCalledWith('fullscreen', true);
+    expect(fullscreenVideoService.on).toHaveBeenCalled();
+
+    service.set(false);
+    expect(service.watch()()).toBeFalse();
+    expect(localStorageService.set).toHaveBeenCalledWith('fullscreen', false);
+    expect(fullscreenVideoService.off).toHaveBeenCalled();
+  });
+
+  it('should toggle status', () => {
+    service.set(false);
+    service.toggle();
+    expect(service.watch()()).toBeTrue();
+    expect(localStorageService.set).toHaveBeenCalledWith('fullscreen', true);
+    expect(fullscreenVideoService.on).toHaveBeenCalled();
+
+    service.toggle();
+    expect(service.watch()()).toBeFalse();
+    expect(localStorageService.set).toHaveBeenCalledWith('fullscreen', false);
+    expect(fullscreenVideoService.off).toHaveBeenCalled();
+  });
+
+  it('should call renderFullscreen on init and set', () => {
+    service.set(true);
+    expect(fullscreenVideoService.on).toHaveBeenCalled();
+    expect(fullscreenVideoService.off).not.toHaveBeenCalled();
+
+    service.set(false);
+    expect(fullscreenVideoService.off).toHaveBeenCalled();
+  });
 });
