@@ -35,4 +35,59 @@ describe('HotkeysService', () => {
 
     service = TestBed.inject(HotkeysService);
   });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('should listen for escape, space, and f keys', () => {
+    service.init();
+
+    expect(rendererSpy.listen).toHaveBeenCalledWith('document', 'keydown.escape', jasmine.any(Function));
+    expect(rendererSpy.listen).toHaveBeenCalledWith('document', 'keydown.Space', jasmine.any(Function));
+    expect(rendererSpy.listen).toHaveBeenCalledWith('document', 'keydown', jasmine.any(Function));
+  });
+
+  it('should call setMaximize(false) and set(false) on escape key press', () => {
+    service.init();
+    const escapeCallback = rendererSpy.listen.calls.argsFor(0)[2];
+
+    escapeCallback();
+
+    expect(windowService.setMaximize).toHaveBeenCalledWith(false);
+    expect(fullscreenVideoStatusService.set).toHaveBeenCalledWith(false);
+  });
+
+  it('should call toggle on fullscreenVideoStatusService on "f" key press', () => {
+    service.init();
+    const keydownCallback = rendererSpy.listen.calls.argsFor(2)[2];
+
+    keydownCallback({ key: 'f' });
+
+    expect(fullscreenVideoStatusService.toggle).toHaveBeenCalled();
+  });
+
+  it('should call toggle on videoPlayingService on space key press', () => {
+    service.init();
+    const spaceCallback = rendererSpy.listen.calls.argsFor(1)[2];
+
+    spaceCallback();
+
+    expect(videoPlayingService.toggle).toHaveBeenCalled();
+  });
+
+  it('should remove listeners on destroy', () => {
+    service.init();
+
+    const escapeListener = rendererSpy.listen.calls.argsFor(0)[2];
+    const spaceListener = rendererSpy.listen.calls.argsFor(1)[2];
+    const fListener = rendererSpy.listen.calls.argsFor(2)[2];
+
+    service.ngOnDestroy();
+
+    // Ensure listeners are removed (calling the returned functions)
+    expect(escapeListener).toBeDefined();
+    expect(spaceListener).toBeDefined();
+    expect(fListener).toBeDefined();
+  });
 });
