@@ -8,6 +8,8 @@ describe('LocalStorageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(LocalStorageService);
+
+    localStorage.clear();
   });
 
   it('should be created', () => {
