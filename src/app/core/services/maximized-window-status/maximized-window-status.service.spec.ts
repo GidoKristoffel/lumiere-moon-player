@@ -27,4 +27,28 @@ describe('MaximizedWindowStatusService', () => {
   it('should return initial status as false', () => {
     expect(service.watch()()).toBeFalse();
   });
+
+  it('should set status correctly', () => {
+    service.set(true);
+    expect(service.watch()()).toBeTrue();
+
+    service.set(false);
+    expect(service.watch()()).toBeFalse();
+  });
+
+  it('should update status correctly', async () => {
+    // Mock appWindow.isMaximized() to return false
+    spyOn(appWindow, 'isMaximized').and.returnValue(Promise.resolve(false));
+
+    await service.update();
+
+    expect(service.watch()()).toBeFalse();
+
+    // Mock appWindow.isMaximized() to return true
+    spyOn(appWindow, 'isMaximized').and.returnValue(Promise.resolve(true));
+
+    await service.update();
+
+    expect(service.watch()()).toBeTrue();
+  });
 });
