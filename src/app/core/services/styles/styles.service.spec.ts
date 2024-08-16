@@ -23,4 +23,7 @@ describe('StylesService', () => {
     service = TestBed.inject(StylesService);
   });
 
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
 });
