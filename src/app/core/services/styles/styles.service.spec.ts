@@ -26,4 +26,19 @@ describe('StylesService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should set style on elements with specified tag name', () => {
+    // Mock document.getElementsByTagName
+    const mockElements = [
+      document.createElement('div'),
+      document.createElement('div')
+    ];
+    spyOn(document, 'getElementsByTagName').and.returnValue(mockElements as any);
+
+    service.setByTagName('div', 'display', 'none');
+
+    expect(renderer2Spy.setStyle).toHaveBeenCalledTimes(2);
+    expect(renderer2Spy.setStyle).toHaveBeenCalledWith(mockElements[0], 'display', 'none');
+    expect(renderer2Spy.setStyle).toHaveBeenCalledWith(mockElements[1], 'display', 'none');
+  });
 });
