@@ -41,4 +41,19 @@ describe('StylesService', () => {
     expect(renderer2Spy.setStyle).toHaveBeenCalledWith(mockElements[0], 'display', 'none');
     expect(renderer2Spy.setStyle).toHaveBeenCalledWith(mockElements[1], 'display', 'none');
   });
+
+  it('should remove style from elements with specified tag name', () => {
+    // Mock document.getElementsByTagName
+    const mockElements = [
+      document.createElement('div'),
+      document.createElement('div')
+    ];
+    spyOn(document, 'getElementsByTagName').and.returnValue(mockElements as any);
+
+    service.removeByTagName('div', 'display');
+
+    expect(renderer2Spy.removeStyle).toHaveBeenCalledTimes(2);
+    expect(renderer2Spy.removeStyle).toHaveBeenCalledWith(mockElements[0], 'display');
+    expect(renderer2Spy.removeStyle).toHaveBeenCalledWith(mockElements[1], 'display');
+  });
 });
