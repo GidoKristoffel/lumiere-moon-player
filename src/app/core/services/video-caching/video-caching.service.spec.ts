@@ -21,4 +21,7 @@ describe('VideoCachingService', () => {
     videoServiceSpy = TestBed.inject(VideoService) as jasmine.SpyObj<VideoService>;
   });
 
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
 });
