@@ -35,4 +35,12 @@ describe('VideoCachingService', () => {
     expect(videoServiceSpy.set).toHaveBeenCalledWith(mockVideoUrl);
   });
 
+  it('should set video URL in localStorage', () => {
+    const mockVideoUrl = 'http://example.com/new-video.mp4';
+    spyOn(localStorage, 'setItem');
+
+    service.run(mockVideoUrl);
+
+    expect(localStorage.setItem).toHaveBeenCalledWith('videoUrl', mockVideoUrl);
+  });
 });
