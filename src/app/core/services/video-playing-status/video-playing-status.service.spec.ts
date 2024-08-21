@@ -27,4 +27,12 @@ describe('VideoPlayingStatusService', () => {
     service.set(false);
     expect(service.watch()()).toBe(false);
   });
+
+  it('should return a readonly signal', () => {
+    const statusSignal: Signal<boolean> = service.watch();
+
+    expect(() => {
+      (statusSignal as any).set(true);
+    }).toThrowError();
+  });
 });
