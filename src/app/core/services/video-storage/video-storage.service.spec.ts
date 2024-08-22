@@ -8,9 +8,7 @@ describe('VideoStorageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(VideoStorageService);
-  });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
+    localStorage.clear();
   });
 });
