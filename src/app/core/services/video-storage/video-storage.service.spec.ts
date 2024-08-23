@@ -12,6 +12,10 @@ describe('VideoStorageService', () => {
     localStorage.clear();
   });
 
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
   it('should set and get video URL', () => {
     const videoUrl = 'http://example.com/video.mp4';
 
