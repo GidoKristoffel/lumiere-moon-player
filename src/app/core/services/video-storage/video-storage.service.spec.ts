@@ -34,4 +34,8 @@ describe('VideoStorageService', () => {
 
     expect(service.isAvailable()).toBeTrue();
   });
+
+  it('should return false when video URL is not set', () => {
+    expect(service.isAvailable()).toBeFalse();
+  });
 });
