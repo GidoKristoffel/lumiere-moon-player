@@ -29,4 +29,9 @@ describe('VideoStorageService', () => {
     expect(service.get()).toBeNull();
   });
 
+  it('should return true when video URL is set', () => {
+    service.set('http://example.com/video.mp4');
+
+    expect(service.isAvailable()).toBeTrue();
+  });
 });
