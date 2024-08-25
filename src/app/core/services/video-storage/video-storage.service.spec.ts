@@ -38,4 +38,13 @@ describe('VideoStorageService', () => {
   it('should return false when video URL is not set', () => {
     expect(service.isAvailable()).toBeFalse();
   });
+
+  it('should load video URL from localStorage on initialization', () => {
+    const videoUrl = 'http://example.com/video.mp4';
+    localStorage.setItem('videoUrl', videoUrl);
+
+    const newService = TestBed.inject(VideoStorageService);
+
+    expect(newService.get()).toBe(videoUrl);
+  });
 });
