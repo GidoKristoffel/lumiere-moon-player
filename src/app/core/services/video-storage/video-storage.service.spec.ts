@@ -47,4 +47,11 @@ describe('VideoStorageService', () => {
 
     expect(newService.get()).toBe(videoUrl);
   });
+
+  it('should not set anything in localStorage if video URL is null', () => {
+    service.set(null);
+
+    expect(localStorage.getItem('videoUrl')).toBeNull();
+    expect(service.get()).toBeNull();
+  });
 });
