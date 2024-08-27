@@ -33,4 +33,8 @@ describe('WindowService', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
 });
