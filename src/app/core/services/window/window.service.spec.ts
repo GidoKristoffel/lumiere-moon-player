@@ -2,6 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { WindowService } from './window.service';
 import { MaximizedWindowStatusService } from "../maximized-window-status/maximized-window-status.service";
+import { appWindow } from "@tauri-apps/api/window";
 
 // Заглушаем методы appWindow
 jest.mock('@tauri-apps/api/window', () => ({
@@ -36,5 +37,10 @@ describe('WindowService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('should minimize the window', () => {
+    service.minimize();
+    expect(appWindow.minimize).toHaveBeenCalled();
   });
 });
