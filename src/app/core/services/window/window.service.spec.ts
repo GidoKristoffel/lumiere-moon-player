@@ -43,4 +43,15 @@ describe('WindowService', () => {
     service.minimize();
     expect(appWindow.minimize).toHaveBeenCalled();
   });
+
+  it('should toggle maximize window (maximize if not maximized)', async () => {
+    // Заглушаем возвращаемое значение isMaximized
+    (appWindow.isMaximized as jest.Mock).mockResolvedValueOnce(false);
+
+    await service.toggleMaximize();
+
+    expect(appWindow.isMaximized).toHaveBeenCalled();
+    expect(appWindow.maximize).toHaveBeenCalled();
+    expect(maximizedWindowStatusService.set).toHaveBeenCalledWith(true);
+  });
 });
