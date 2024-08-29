@@ -54,4 +54,11 @@ describe('WindowService', () => {
     expect(appWindow.maximize).toHaveBeenCalled();
     expect(maximizedWindowStatusService.set).toHaveBeenCalledWith(true);
   });
+
+  it('should set maximize to true', async () => {
+    await service.setMaximize(true);
+
+    expect(appWindow.maximize).toHaveBeenCalled();
+    expect(maximizedWindowStatusService.set).toHaveBeenCalledWith(true);
+  });
 });
