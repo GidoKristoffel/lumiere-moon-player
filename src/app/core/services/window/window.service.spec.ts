@@ -68,4 +68,9 @@ describe('WindowService', () => {
     expect(appWindow.unmaximize).toHaveBeenCalled();
     expect(maximizedWindowStatusService.set).toHaveBeenCalledWith(false);
   });
+
+  it('should close the window', () => {
+    service.close();
+    expect(appWindow.close).toHaveBeenCalled();
+  });
 });
