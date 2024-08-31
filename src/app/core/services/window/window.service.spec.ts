@@ -73,4 +73,9 @@ describe('WindowService', () => {
     service.close();
     expect(appWindow.close).toHaveBeenCalled();
   });
+
+  it('should start dragging the window', () => {
+    service.startDragging();
+    expect(appWindow.startDragging).toHaveBeenCalled();
+  });
 });
