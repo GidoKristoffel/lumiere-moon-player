@@ -22,6 +22,14 @@ describe('ProgressBarComponent', () => {
   let mockVideoTimeTooltipDisplayService: jasmine.SpyObj<VideoTimeTooltipDisplayService>;
 
   beforeEach(async () => {
+    mockVideoBufferingViewService = jasmine.createSpyObj('VideoBufferingViewService', ['watch']);
+    mockVideoProgressViewService = jasmine.createSpyObj('VideoProgressViewService', ['watch']);
+    mockVideoProgressDragService = jasmine.createSpyObj('VideoProgressDragService', ['init', 'start', 'stop']);
+    mockVideoProgressBarHoverService = jasmine.createSpyObj('VideoProgressBarHoverService', ['update']);
+    mockVideoTimeTooltipService = jasmine.createSpyObj('VideoTimeTooltipService', ['update']);
+    mockVideoTimeTooltipDisplayService = jasmine.createSpyObj('VideoTimeTooltipDisplayService', ['set']);
+
+
     await TestBed.configureTestingModule({
       imports: [ProgressBarComponent]
     })
