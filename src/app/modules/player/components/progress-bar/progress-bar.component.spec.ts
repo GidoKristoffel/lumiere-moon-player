@@ -29,7 +29,6 @@ describe('ProgressBarComponent', () => {
     mockVideoTimeTooltipService = jasmine.createSpyObj('VideoTimeTooltipService', ['update']);
     mockVideoTimeTooltipDisplayService = jasmine.createSpyObj('VideoTimeTooltipDisplayService', ['set']);
 
-
     await TestBed.configureTestingModule({
       declarations: [ProgressBarComponent],
       providers: [
