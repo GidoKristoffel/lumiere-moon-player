@@ -31,9 +31,16 @@ describe('ProgressBarComponent', () => {
 
 
     await TestBed.configureTestingModule({
-      imports: [ProgressBarComponent]
-    })
-    .compileComponents();
+      declarations: [ProgressBarComponent],
+      providers: [
+        { provide: VideoBufferingViewService, useValue: mockVideoBufferingViewService },
+        { provide: VideoProgressViewService, useValue: mockVideoProgressViewService },
+        { provide: VideoProgressDragService, useValue: mockVideoProgressDragService },
+        { provide: VideoProgressBarHoverService, useValue: mockVideoProgressBarHoverService },
+        { provide: VideoTimeTooltipService, useValue: mockVideoTimeTooltipService },
+        { provide: VideoTimeTooltipDisplayService, useValue: mockVideoTimeTooltipDisplayService }
+      ]
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ProgressBarComponent);
     component = fixture.componentInstance;
