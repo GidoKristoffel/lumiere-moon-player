@@ -49,4 +49,9 @@ describe('ProgressBarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should initialize videoProgressDragService on AfterViewInit', () => {
+    component.ngAfterViewInit();
+    expect(mockVideoProgressDragService.init).toHaveBeenCalledWith(component.progressBarWrapper);
+  });
 });
