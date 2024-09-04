@@ -54,4 +54,10 @@ describe('ProgressBarComponent', () => {
     component.ngAfterViewInit();
     expect(mockVideoProgressDragService.init).toHaveBeenCalledWith(component.progressBarWrapper);
   });
+
+  it('should start dragging', () => {
+    const event = new MouseEvent('mousedown');
+    component.startMoving(event);
+    expect(mockVideoProgressDragService.start).toHaveBeenCalledWith(event);
+  });
 });
