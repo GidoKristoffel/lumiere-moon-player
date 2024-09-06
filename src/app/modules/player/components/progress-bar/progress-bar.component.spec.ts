@@ -65,4 +65,11 @@ describe('ProgressBarComponent', () => {
     component.stopMoving();
     expect(mockVideoProgressDragService.stop).toHaveBeenCalled();
   });
+
+  it('should update hover and tooltip on moving', () => {
+    const event = new MouseEvent('mousemove', { clientX: 100, offsetX: 50 });
+    component.moving(event);
+    expect(mockVideoProgressBarHoverService.update).toHaveBeenCalledWith(event.offsetX, component.progressBarWrapper.nativeElement);
+    expect(mockVideoTimeTooltipService.update).toHaveBeenCalledWith(event.clientX, event.offsetX, component.progressBarWrapper.nativeElement);
+  });
 });
