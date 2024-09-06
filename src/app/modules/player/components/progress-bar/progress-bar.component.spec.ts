@@ -60,4 +60,9 @@ describe('ProgressBarComponent', () => {
     component.startMoving(event);
     expect(mockVideoProgressDragService.start).toHaveBeenCalledWith(event);
   });
+
+  it('should stop dragging', () => {
+    component.stopMoving();
+    expect(mockVideoProgressDragService.stop).toHaveBeenCalled();
+  });
 });
