@@ -85,4 +85,9 @@ describe('ProgressBarComponent', () => {
     expect(mockVideoProgressBarHoverService.update).toHaveBeenCalled();
     expect(mockVideoTimeTooltipService.update).toHaveBeenCalled();
   });
+
+  it('should show tooltip on mouse enter', () => {
+    component.onMouseEnter();
+    expect(mockVideoTimeTooltipDisplayService.set).toHaveBeenCalledWith(true);
+  });
 });
