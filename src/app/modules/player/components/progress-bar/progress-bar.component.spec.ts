@@ -72,4 +72,17 @@ describe('ProgressBarComponent', () => {
     expect(mockVideoProgressBarHoverService.update).toHaveBeenCalledWith(event.offsetX, component.progressBarWrapper.nativeElement);
     expect(mockVideoTimeTooltipService.update).toHaveBeenCalledWith(event.clientX, event.offsetX, component.progressBarWrapper.nativeElement);
   });
+
+  it('should handle notMoving event correctly', () => {
+    const event = new MouseEvent('mousemove', { clientX: 100 });
+    spyOn(event, 'preventDefault');
+    spyOn(event, 'stopPropagation');
+
+    component.notMoving(event);
+
+    expect(event.preventDefault).toHaveBeenCalled();
+    expect(event.stopPropagation).toHaveBeenCalled();
+    expect(mockVideoProgressBarHoverService.update).toHaveBeenCalled();
+    expect(mockVideoTimeTooltipService.update).toHaveBeenCalled();
+  });
 });
