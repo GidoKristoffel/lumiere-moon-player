@@ -8,13 +8,8 @@ describe('TimeDisplayComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TimeDisplayComponent]
-    })
-    .compileComponents();
-    
-    fixture = TestBed.createComponent(TimeDisplayComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+      imports: [TimeDisplayComponent, DatePipe],
+    }).compileComponents();
   });
 
   it('should create', () => {
