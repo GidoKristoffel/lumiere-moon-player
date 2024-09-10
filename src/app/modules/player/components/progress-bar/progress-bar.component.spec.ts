@@ -90,4 +90,9 @@ describe('ProgressBarComponent', () => {
     component.onMouseEnter();
     expect(mockVideoTimeTooltipDisplayService.set).toHaveBeenCalledWith(true);
   });
+
+  it('should hide tooltip on mouse leave', () => {
+    component.onMouseLeave();
+    expect(mockVideoTimeTooltipDisplayService.set).toHaveBeenCalledWith(false);
+  });
 });
