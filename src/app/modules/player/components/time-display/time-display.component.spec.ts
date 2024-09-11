@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TimeDisplayComponent } from './time-display.component';
+import { DatePipe } from "@angular/common";
 
 describe('TimeDisplayComponent', () => {
   let component: TimeDisplayComponent;
