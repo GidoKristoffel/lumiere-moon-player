@@ -27,4 +27,13 @@ describe('TimeDisplayComponent', () => {
     expect(component.currentTime).toBe(0);
     expect(component.totalTime).toBe(0);
   });
+
+  it('should correctly set @Input values for currentTime and totalTime', () => {
+    component.currentTime = 50;
+    component.totalTime = 300;
+    fixture.detectChanges();
+
+    expect(component.currentTime).toBe(50);
+    expect(component.totalTime).toBe(300);
+  });
 });
