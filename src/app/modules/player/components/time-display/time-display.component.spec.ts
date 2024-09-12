@@ -22,4 +22,9 @@ describe('TimeDisplayComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display correct default values for currentTime and totalTime', () => {
+    expect(component.currentTime).toBe(0);
+    expect(component.totalTime).toBe(0);
+  });
 });
