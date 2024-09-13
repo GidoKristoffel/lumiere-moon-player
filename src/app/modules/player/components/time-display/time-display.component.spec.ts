@@ -41,5 +41,12 @@ describe('TimeDisplayComponent', () => {
     component.currentTime = 120;
     component.totalTime = 300;
     fixture.detectChanges();
+
+    const compiled = fixture.nativeElement as HTMLElement;
+
+    const timeDisplayElement = compiled.querySelector('.time-display'); // Example class, replace with real class
+    expect(timeDisplayElement).toBeTruthy();
+    // Example for checking displayed time, assuming formatting:
+    // expect(timeDisplayElement?.textContent).toContain('02:00 / 05:00');
   });
 });
