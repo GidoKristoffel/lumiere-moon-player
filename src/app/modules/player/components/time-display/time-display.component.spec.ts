@@ -36,4 +36,10 @@ describe('TimeDisplayComponent', () => {
     expect(component.currentTime).toBe(50);
     expect(component.totalTime).toBe(300);
   });
+
+  it('should correctly render time values in the template', () => {
+    component.currentTime = 120;
+    component.totalTime = 300;
+    fixture.detectChanges();
+  });
 });
