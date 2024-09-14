@@ -5,6 +5,10 @@ import { TimeTooltipComponent } from './time-tooltip.component';
 describe('TimeTooltipComponent', () => {
   let component: TimeTooltipComponent;
   let fixture: ComponentFixture<TimeTooltipComponent>;
+  let videoTimeTooltipDisplayService: jasmine.SpyObj<VideoTimeTooltipDisplayService>;
+  let videoTimeTooltipViewService: jasmine.SpyObj<VideoTimeTooltipViewService>;
+  let videoTimeTooltipPositionService: jasmine.SpyObj<VideoTimeTooltipPositionService>;
+  let videoTimeTooltipElementService: jasmine.SpyObj<VideoTimeTooltipElementService>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
