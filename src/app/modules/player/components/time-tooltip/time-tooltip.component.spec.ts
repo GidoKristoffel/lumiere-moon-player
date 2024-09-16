@@ -25,6 +25,16 @@ describe('TimeTooltipComponent', () => {
     const viewServiceSpy = jasmine.createSpyObj('VideoTimeTooltipViewService', ['watch']);
     const positionServiceSpy = jasmine.createSpyObj('VideoTimeTooltipPositionService', ['watch']);
     const elementServiceSpy = jasmine.createSpyObj('VideoTimeTooltipElementService', ['init']);
+
+    await TestBed.configureTestingModule({
+      imports: [TimeTooltipComponent],
+      providers: [
+        { provide: VideoTimeTooltipDisplayService, useValue: displayServiceSpy },
+        { provide: VideoTimeTooltipViewService, useValue: viewServiceSpy },
+        { provide: VideoTimeTooltipPositionService, useValue: positionServiceSpy },
+        { provide: VideoTimeTooltipElementService, useValue: elementServiceSpy },
+      ]
+    }).compileComponents();
   });
 
   it('should create', () => {
